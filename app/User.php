@@ -43,4 +43,8 @@ class User extends Authenticatable
         ->orderBy('id','desc')
         ->get();
     }
+    public function rol()
+    {
+       return $this->belongsTo(Rol::class,'rol_id');
+    }
 }
