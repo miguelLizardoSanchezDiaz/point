@@ -22,4 +22,5 @@ Route::group(['middleware'=>'auth'],function()
 	Route::get('/home', 'HomeController@index')->name('home');
 
 	Route::resource('usuario','UsuarioController');
+	route::resource('permisos-por-rol','RolPermisoController');
 });

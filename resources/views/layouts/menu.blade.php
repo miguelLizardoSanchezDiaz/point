@@ -45,9 +45,9 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./index3.html" class="nav-link">
+                <a href="{{url('permisos-por-rol')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Permisos</p>
+                  <p>Permisos por rol</p>
                 </a>
               </li>
             </ul>
