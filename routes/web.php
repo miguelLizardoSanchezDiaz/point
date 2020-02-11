@@ -21,7 +21,16 @@ Route::group(['middleware'=>'auth'],function()
 {
 	Route::get('/home', 'HomeController@index')->name('home');
 
-	Route::resource('usuario','UsuarioController');
-	route::resource('permisos-por-rol','RolPermisoController');
+	//CONFIGURACION
+    route::resource('usuario','UsuarioController');
+    route::resource('rol','RolController');
+    route::resource('permisos-por-rol','RolPermisoController');
+    //ASIGNACION DE PERMISOS
+    Route::post('/permiso/ver_permiso_asignado','RolPermisoController@ver_permiso_asignado');
+    Route::post('/permiso/ver_permiso_no_asignado','RolPermisoController@ver_permiso_no_asignado');
+    Route::post('/permiso/asignar_permiso','RolPermisoController@asignar_permiso');
+    Route::post('/permiso/quitar_permiso','RolPermisoController@quitar_permiso');
+
+    
     Route::resource('tercero','TerceroController');
 });

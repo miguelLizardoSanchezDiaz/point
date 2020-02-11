@@ -1,3 +1,4 @@
+{!! Html::script('/js/ip.js') !!}
 <!-- REQUIRED SCRIPTS -->
 <!-- jQuery -->
 {!! Html::script('adminlte/plugins/jquery/jquery.min.js') !!}

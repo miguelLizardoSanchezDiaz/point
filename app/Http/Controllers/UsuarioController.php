@@ -18,14 +18,14 @@ class UsuarioController extends Controller
         if(valida_privilegio($this->permiso)==0){return view('layouts.no_privilegio',compact('variable'));}
 
     	$usuarios=User::getLista();
-    	return view('usuario.listado',compact('usuarios','variable'));
+    	return view('configuracion.usuario.listado',compact('usuarios','variable'));
     }
 
     public function create(){
     	$variable=$this->variable;
         if(valida_privilegio($this->permiso)==0){return view('layouts.no_privilegio',compact('variable'));}
         $roles=Rol::getLista();
-        return view('usuario.nuevo',compact('variable','roles'));
+        return view('configuracion.usuario.nuevo',compact('variable','roles'));
     }
     public function store(Request $request)
     {
@@ -58,7 +58,7 @@ class UsuarioController extends Controller
 
         $usuario=User::findOrFail($id);
         $roles=Rol::getLista();
-        return view('usuario.editar', compact('usuario', 'variable','roles'));
+        return view('configuracion.usuario.editar', compact('usuario', 'variable','roles'));
     }
 
     public function update(Request $request, $id)
@@ -90,7 +90,7 @@ class UsuarioController extends Controller
         if(valida_privilegio($this->permiso)==0){return view('layouts.no_privilegio',compact('variable'));}
 
         $usuario=User::findOrFail($id);
-        return view('usuario.eliminar', compact('usuario', 'variable'));
+        return view('configuracion.usuario.eliminar', compact('usuario', 'variable'));
     }
 
     public function destroy($id)
