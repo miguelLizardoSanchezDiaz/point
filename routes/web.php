@@ -23,4 +23,5 @@ Route::group(['middleware'=>'auth'],function()
 
 	Route::resource('usuario','UsuarioController');
 	route::resource('permisos-por-rol','RolPermisoController');
+    Route::resource('tercero','TerceroController');
 });
