@@ -22,4 +22,5 @@ Route::group(['middleware'=>'auth'],function()
 	Route::get('/home', 'HomeController@index')->name('home');
 
 	Route::resource('usuario','UsuarioController');
+        Route::resource('tercero','TerceroController');
 });
