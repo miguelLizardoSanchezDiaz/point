@@ -14,7 +14,7 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="{{url('home')}}">Inicio</a></li>
-              <li class="breadcrumb-item active">Nuevo Usuario</li>
+              <li class="breadcrumb-item active">Editar Usuario</li>
             </ol>
           </div>
         </div>
@@ -27,9 +27,8 @@
           <div class="col-md-12">
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Nuevo Usuarios</h3>
+                <h3 class="card-title">Editar Usuarios</h3>
               </div>
-
               <div class="card-body">
                 <div class="row">
                     <div class="col-sm-12 col-xs-12">
@@ -40,32 +39,35 @@
                     </div>
                   </div>
                   <div class="row">
-                    <form class="col-sm-12 col-xs-12" method="POST" action="{{url($variable)}}" accept-charset="UTF-8" enctype="multipart/form-data">
+                            <div class="col-sm-12 col-xs-12">
+                                
+                                {!!Form::model($usuario, ['route'=> ['usuario.update', $usuario ], 'method'=>'PUT', 'class'=>'','files' => true])!!}
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <fieldset>
+                                    
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Usuario (*)</label>
-                                        {!! Form::text('email',null,['class' => 'form-control','id'=>'email', 'maxlength'=>'250','placeholder'=>'Ingrese usuario']) !!}
+                                        <label for="exampleInputEmail1">Usuario</label>
+                                        {!! Form::text('email',$usuario->email,['class' => 'form-control','id'=>'email', 'maxlength'=>'250','placeholder'=>'Ingrese usuario','readonly'=>'readonly']) !!}
                                     </div>
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Nombres (*)</label>
-                                        {!! Form::text('txt_nombre',null,['class' => 'form-control','id'=>'txt_nombre', 'maxlength'=>'250','placeholder'=>'Ingrese nombre']) !!}
+                                        <label for="exampleInputEmail1">Nombres(*)</label>
+                                        {!! Form::text('txt_nombre',$usuario->name,['class' => 'form-control','id'=>'txt_nombre', 'maxlength'=>'250','placeholder'=>'Ingrese nombre']) !!}
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Rol</label>
                                         <select class="form-control" id="cbo_rol" name="cbo_rol">
                                             @foreach($roles as $rol)
-                                                <option value="{{$rol->id}}">{{$rol->rol_descripcion}}</option>
+                                                <option value="{{$rol->id}}" @if($usuario->rol_id==$rol->id) selected @endif>{{$rol->rol_descripcion}}</option>
                                             @endforeach
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <label for="exampleInputPassword1">Contraseña (*)</label>
-                                        <input type="password" class="form-control" name="txt_contraseña1" id="txt_contraseña1" maxlength="25" placeholder="****************">
+                                        <label for="exampleInputPassword1">Contraseña</label>
+                                        <input type="password" class="form-control" name="txt_contraseña1" id="txt_contraseña1" maxlength="25" placeholder="****************" value="123456">
                                     </div>
                                     <div class="form-group">
-                                        <label for="exampleInputPassword1">Repita Contraseña (*)</label>
-                                        <input type="password" class="form-control" name="txt_contraseña2" id="txt_contraseña2" maxlength="25" placeholder="****************">
+                                        <label for="exampleInputPassword1">Repita Contraseña</label>
+                                        <input type="password" class="form-control" name="txt_contraseña2" id="txt_contraseña2" maxlength="25" placeholder="****************" value="123456">
                                     </div>
                                     <div class="form-group">
                                     <label>(*) Campos Obligatorios</label>
@@ -73,7 +75,8 @@
                                     <button type="submit" class="btn btn-sm btn-primary m-r-5"><span class="glyphicon glyphicon-save"></span> Registrar</button>
                                     <a href="{{url($variable)}}" class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-remove"></span> Cancelar</a>
                                 </fieldset>
-                            </form>
+                                {!!Form::close()!!}
+                            </div>
 
                 </div>
                
