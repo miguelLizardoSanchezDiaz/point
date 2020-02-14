@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use App\DocumentoIdentidad;
+use App\TipoTercero;
 use App\Tercero;
+use App\Ubigeo;
 use App\User;
-use App\Rol;
 use Session;
 use Crypt;
 
@@ -20,14 +22,16 @@ class TerceroController extends Controller
         if(valida_privilegio($this->permiso)==0){return view('layouts.no_privilegio',compact('variable'));}
 
     	$terceros=Tercero::getLista();
-    	return view('tercero.listado',compact('terceros','variable'));
+    	return view('maestros.tercero.listado',compact('terceros','variable'));
     }
 
     public function create(){
     	$variable=$this->variable;
         if(valida_privilegio($this->permiso)==0){return view('layouts.no_privilegio',compact('variable'));}
-        $roles=Rol::getLista();
-        return view('usuario.nuevo',compact('variable','roles'));
+        $tipostercero=TipoTercero::getLista();
+        $documentosidentidad=DocumentoIdentidad::getLista();
+        $ubigeos=Ubigeo::getLista();
+        return view('maestros.tercero.nuevo',compact('variable','tipostercero','documentosidentidad','ubigeos'));
     }
     public function store(Request $request)
     {
