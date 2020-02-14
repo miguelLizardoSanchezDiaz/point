@@ -31,6 +31,16 @@ Route::group(['middleware'=>'auth'],function()
     Route::post('/permiso/asignar_permiso','RolPermisoController@asignar_permiso');
     Route::post('/permiso/quitar_permiso','RolPermisoController@quitar_permiso');
 
+    //MAESTROS
+    route::resource('producto','ProductoController');
+    Route::post('productos.guarda_fotos', [
+        'uses'=>'productoController@guarda_fotos',
+        'as'=>'productos.guarda_fotos'
+    ]);
+    Route::post('elimina_detalle_producto', [
+        'uses'=>'productoController@elimina_detalle_producto',
+        'as'=>'elimina_detalle_producto'
+    ]);
     
     Route::resource('tercero','TerceroController');
 });
