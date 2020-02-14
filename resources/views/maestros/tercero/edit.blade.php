@@ -15,7 +15,7 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="{{url('home')}}">Inicio</a></li>
-              <li class="breadcrumb-item active">Nuevo Tercero</li>
+              <li class="breadcrumb-item active">Editar Tercero</li>
             </ol>
           </div>
         </div>
@@ -29,7 +29,7 @@
           <div class="col-md-12">
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Nuevo Tercero</h3>
+                <h3 class="card-title">Editar Tercero</h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
@@ -41,47 +41,47 @@
                         @include('errors.errores')
                     </div>
 
-                    <form class="col-sm-12 col-xs-12" method="POST" action="{{url($variable)}}" accept-charset="UTF-8" enctype="multipart/form-data">
+                    {!!Form::model($tercero, ['route'=> ['tercero.update', $tercero ], 'method'=>'PUT', 'class'=>'col-sm-12 col-xs-12','files' => true])!!}
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <fieldset>
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Documnto Identidad</label>
-                                        <select class="form-control" id="cbo_documento" name="cbo_documento" onchange="validar_persona_empresa()">
+                                        <select class="form-control" id="cbo_documento" value="$tercero->doid_id" name="cbo_documento" onchange="validar_persona_empresa()">
                                             @foreach($documentosidentidad as $documento)
-                                                <option value="{{$documento->id}}">{{$documento->doi_descripcion}}</option>
+                                                <option value="{{$documento->id}}" @if($tercero->doi_id==$documento->id) selected @endif>{{$documento->doi_descripcion}}</option>
                                             @endforeach
                                         </select>
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Código (*)</label>
-                                        {!! Form::text('txt_codigo',null,['class' => 'form-control','id'=>'txt_codigo', 'maxlength'=>'250','placeholder'=>'Ingrese codigo']) !!}
+                                        {!! Form::text('txt_codigo',$tercero->ter_codigo,['class' => 'form-control','id'=>'txt_codigo', 'maxlength'=>'250','placeholder'=>'Ingrese usuario','readonly'=>'readonly']) !!}
                                     </div>
                                     <div id="empresa">
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Razon Social (*)</label>
-                                            {!! Form::text('txt_razonsocial',null,['class' => 'form-control','id'=>'txt_razonsocial', 'maxlength'=>'250','placeholder'=>'Ingrese razón social']) !!}
+                                            {!! Form::text('txt_razonsocial',$tercero->ter_descripcion,['class' => 'form-control','id'=>'txt_razonsocial', 'maxlength'=>'250','placeholder'=>'Ingrese razón social']) !!}
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Nombre Comercial (*)</label>
-                                            {!! Form::text('txt_nombreComercial',null,['class' => 'form-control','id'=>'txt_nombreComercial', 'maxlength'=>'250','placeholder'=>'Ingrese nombre comercial']) !!}
+                                            {!! Form::text('txt_nombreComercial',$tercero->ter_nombre_comercial,['class' => 'form-control','id'=>'txt_nombreComercial', 'maxlength'=>'250','placeholder'=>'Ingrese nombre comercial']) !!}
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Pagina Web</label>
-                                            {!! Form::text('txt_web',null,['class' => 'form-control','id'=>'txt_web', 'maxlength'=>'250','placeholder'=>'Ingrese pagina web']) !!}
+                                            {!! Form::text('txt_web',$tercero->ter_web,['class' => 'form-control','id'=>'txt_web', 'maxlength'=>'250','placeholder'=>'Ingrese pagina web']) !!}
                                         </div>
                                     </div>
                                     <div id="persona">
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Nombres (*)</label>
-                                            {!! Form::text('txt_nombre',null,['class' => 'form-control','id'=>'txt_nombre', 'maxlength'=>'250','placeholder'=>'Ingrese nombre']) !!}
+                                            {!! Form::text('txt_nombre',$tercero->ter_nombres,['class' => 'form-control','id'=>'txt_nombre', 'maxlength'=>'250','placeholder'=>'Ingrese nombre']) !!}
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Apellido Paterno (*)</label>
-                                            {!! Form::text('txt_apellidopaterno',null,['class' => 'form-control','id'=>'txt_apellidopaterno', 'maxlength'=>'250','placeholder'=>'Ingrese apellido paterno']) !!}
+                                            {!! Form::text('txt_apellidopaterno',$tercero->ter_apellido_paterno,['class' => 'form-control','id'=>'txt_apellidopaterno', 'maxlength'=>'250','placeholder'=>'Ingrese apellido paterno']) !!}
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Apellido Materno (*)</label>
-                                            {!! Form::text('txt_apellidomaterno',null,['class' => 'form-control','id'=>'txt_apellidomaterno', 'maxlength'=>'250','placeholder'=>'Ingrese apellido materno']) !!}
+                                            {!! Form::text('txt_apellidomaterno',$tercero->ter_apellido_materno,['class' => 'form-control','id'=>'txt_apellidomaterno', 'maxlength'=>'250','placeholder'=>'Ingrese apellido materno']) !!}
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Fecha Nacimiento (*)</label>
@@ -89,7 +89,8 @@
                                                 <div class="input-group-prepend">
                                                   <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
                                                 </div>
-                                                <input type="text" class="form-control" id="txt_nacimiento" name="txt_nacimiento" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask>
+                                                {!! Form::text('txt_nacimiento',fecha_a_espanol($tercero->ter_fecha_nacimiento),['class' => 'form-control','id'=>'txt_nacimiento', 'maxlength'=>'250','placeholder'=>'Ingrese apellido materno','data-inputmask-alias'=>'datetime', 'data-inputmask-inputformat'=>'dd/mm/yyyy', 'data-mask']) !!}
+                                                
                                             </div>
                                         </div>
                                     </div>
@@ -97,17 +98,17 @@
                                         <label for="exampleInputEmail1">Tipo tercero (*)</label>
                                         <select class="form-control" id="cbo_tipo" name="cbo_tipo">
                                             @foreach($tipostercero as $tipo)
-                                                <option value="{{$tipo->id}}">{{$tipo->tit_descripcion}}</option>
+                                                <option value="{{$tipo->id}}" @if($tercero->tit_id==$tipo->id) selected @endif>{{$tipo->tit_descripcion}}</option>
                                             @endforeach
                                         </select>
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Telefono</label>
-                                            {!! Form::text('txt_telefono',null,['class' => 'form-control','id'=>'txt_telefono', 'maxlength'=>'250','placeholder'=>'Ingrese telefono']) !!}
+                                            {!! Form::text('txt_telefono',$tercero->ter_telefono1,['class' => 'form-control','id'=>'txt_telefono', 'maxlength'=>'250','placeholder'=>'Ingrese telefono']) !!}
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Dirección (*)</label>
-                                            {!! Form::text('txt_direccion',null,['class' => 'form-control','id'=>'txt_direccion', 'maxlength'=>'250','placeholder'=>'Ingrese dirección']) !!}
+                                            {!! Form::text('txt_direccion',$tercero->ter_direccion,['class' => 'form-control','id'=>'txt_direccion', 'maxlength'=>'250','placeholder'=>'Ingrese dirección']) !!}
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Ubigeo</label>
@@ -116,6 +117,7 @@
                                                 <option value="{{$ubigeo->id}}">{{$ubigeo->ubi_descripcion}}</option>
                                             @endforeach
                                         </select>
+                                        <input type="hidden" name="txt_ubigeo_id" id="txt_ubigeo_id" value="{{$tercero->ubi_id}}">
                                     </div>
                                     <div class="form-group">
                                     <label>(*) Campos Obligatorios</label>

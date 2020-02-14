@@ -4,6 +4,19 @@ $(document).ready(function(){
     $('.select2bs4').select2({
       theme: 'bootstrap4'
     });
+
+    //Datemask dd/mm/yyyy
+    $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' });
+    //Datemask2 mm/dd/yyyy
+    $('#datemask2').inputmask('mm/dd/yyyy', { 'placeholder': 'mm/dd/yyyy' });
+    //Money Euro
+    $('[data-mask]').inputmask();
+
+    validar_persona_empresa();
+    var ubigeo_id=$('#txt_ubigeo_id').val();
+    if(ubigeo_id!=''){
+    	$('#cbo_ubigeo').val(ubigeo_id).trigger('change.select2');
+    }
 });
 
 function validar_persona_empresa(){

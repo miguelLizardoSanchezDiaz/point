@@ -50,9 +50,9 @@
                 <table class="table table-bordered">
                   <thead>                  
                     <tr>
-                        <th>Nombre</th>
-                        <th>Email</th>
-                        <th>Rol</th>
+                        <th>Código</th>
+                        <th>Nombre Comercial</th>
+                        <th>Ubigeo</th>
                         <th>Editar</th>
                         <th>Eliminar</th>
                     </tr>
@@ -60,9 +60,9 @@
                   <tbody>
                     @foreach($terceros as $tercero)
                     <tr class="">
-                        <td>{{$tercero->ter_descripcion}}</td>
-                        <td>{{$tercero->ter_nombre_comercial}}</td>
                         <td>{{$tercero->ter_codigo}}</td>
+                        <td>{{$tercero->ter_nombre_comercial}}</td>
+                        <td>{{$tercero->ter_ubigeo}}</td>
                         <td align="center"><a href="{{route($variable.'.edit',$tercero->id)}}" class="btn btn-sm btn-primary"><span class="fas fa-edit"></span></a></td>
                         <td align="center"><a href="{{route($variable.'.show',$tercero->id)}}" class="btn btn-sm btn-danger"><span class="fas fa-trash-alt"></span></a></td>
                     </tr>

@@ -38,22 +38,120 @@ class TerceroController extends Controller
         $variable=$this->variable;
         if(valida_privilegio($this->permiso)==0){return view('layouts.no_privilegio',compact('variable'));}
 
-        $this->validate($request, 
-            ['email'=>['required','unique:users','email','max:250'], 
-            'txt_nombre'=>['required','max:250'],
-            'txt_contraseña1'=>['required','min:6'],
-            'txt_contraseña2'=>['required','min:6','same:txt_contraseña1'],
-            ]);
+        $tipoDocumento=$request->cbo_documento;
 
-        $usuario=new User;
-        $usuario->email=$request->email;
-        $usuario->name=strtoupper($request->txt_nombre);
-        $usuario->password=bcrypt($request->txt_contraseña2);
-        $usuario->rol_id=$request->cbo_rol;
-        //$usuario->estado=1;
-        $usuario->save();
+        if($tipoDocumento==1){
+            $this->validate($request, 
+            ['txt_codigo'=>['required','max:11'], 
+            'txt_razonsocial'=>['required','max:250'],
+            'txt_nombreComercial'=>['required','max:250'],
+            'txt_direccion'=>['required','max:250']
+            ]);
+        }
+        else{
+            $this->validate($request, 
+            ['txt_codigo'=>['required','max:11'],
+            'txt_nombre'=>['required','max:250'],
+            'txt_nacimiento'=>['required'],
+            'txt_direccion'=>['required','max:250']
+            ]);
+        }
+
+        $tercero=new Tercero;
+        $tercero->ter_codigo=$request->txt_codigo;
+        if($tipoDocumento==1){
+            $tercero->ter_descripcion=strtoupper($request->txt_razonsocial);
+            $tercero->ter_nombre_comercial=strtoupper($request->txt_nombreComercial);
+            $tercero->ter_ruc=$request->txt_codigo;
+            $tercero->ter_web=$request->txt_web;
+        }
+        else{
+            $tercero->ter_fecha_nacimiento=fecha_a_ingles($request->txt_nacimiento);
+            $tercero->ter_apellido_paterno=strtoupper($request->txt_apellidopaterno);
+            $tercero->ter_apellido_materno=strtoupper($request->txt_apellidomaterno);
+            $tercero->ter_nombres=strtoupper($request->txt_nombre);
+            $tercero->ter_dni=$request->txt_codigo;
+        }
+        $tercero->ter_telefono1=$request->txt_telefono;
+        $tercero->ter_direccion=$request->txt_direccion;
+        $tercero->doi_id=$tipoDocumento;
+        $tercero->ubi_id=$request->cbo_ubigeo;
+        $tercero->tit_id=$request->cbo_tipo;
+        $tercero->ter_estado=1;
+        $tercero->save();
 
         Session::flash('flash_message', 'Registro guardado correctamente!');
         return Redirect::to($this->variable);
+    }
+
+    public function edit($id)
+    {
+        $variable=$this->variable;
+        if(valida_privilegio($this->permiso)==0){return view('layouts.no_privilegio',compact('variable'));}
+
+        $tercero=Tercero::findOrFail($id);
+        $tipostercero=TipoTercero::getLista();
+        $documentosidentidad=DocumentoIdentidad::getLista();
+        $ubigeos=Ubigeo::getLista();
+        return view('maestros.tercero.edit', compact('variable','tercero','tipostercero','documentosidentidad','ubigeos'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $variable=$this->variable;
+        if(valida_privilegio($this->permiso)==0){return view('layouts.no_privilegio',compact('variable'));}
+
+        $tipoDocumento=$request->cbo_documento;
+
+        $tercero=Tercero::findOrFail($id);
+        $tercero->ter_codigo=$request->txt_codigo;
+        if($tipoDocumento==1){
+            $tercero->ter_descripcion=strtoupper($request->txt_razonsocial);
+            $tercero->ter_nombre_comercial=strtoupper($request->txt_nombreComercial);
+            $tercero->ter_ruc=$request->txt_codigo;
+            $tercero->ter_web=$request->txt_web;
+        }
+        else{
+            $tercero->ter_fecha_nacimiento=fecha_a_ingles($request->txt_nacimiento);
+            $tercero->ter_apellido_paterno=strtoupper($request->txt_apellidopaterno);
+            $tercero->ter_apellido_materno=strtoupper($request->txt_apellidomaterno);
+            $tercero->ter_nombres=strtoupper($request->txt_nombre);
+            $tercero->ter_dni=$request->txt_codigo;
+        }
+        $tercero->ter_telefono1=$request->txt_telefono;
+        $tercero->ter_direccion=$request->txt_direccion;
+        $tercero->doi_id=$tipoDocumento;
+        $tercero->ubi_id=$request->cbo_ubigeo;
+        $tercero->tit_id=$request->cbo_tipo;
+        $tercero->ter_estado=1;
+        $tercero->save();
+
+        Session::flash('flash_message', 'Registro editado correctamente!');
+        return Redirect::to($this->variable);
+    }
+
+    public function show($id)
+    {
+        $variable=$this->variable;
+        if(valida_privilegio($this->permiso)==0){return view('layouts.no_privilegio',compact('variable'));}
+
+        $tercero=Tercero::findOrFail($id);
+        return view('maestros.tercero.eliminar', compact('variable','tercero'));
+    }
+
+    public function destroy($id)
+    {
+        $variable=$this->variable;
+        if(valida_privilegio($this->permiso)==0){return view('layouts.no_privilegio',compact('variable'));}
+        
+        try {
+            $tercero=Tercero::findOrFail($id);
+            Tercero::destroy($id);
+            Session::flash('flash_message', 'Registro eliminado correctamente!');
+            return Redirect:: to($this->variable);
+        }catch (\Illuminate\Database\QueryException $e){
+            Session::flash('flash_error', "Acción no válida. El registro ya está relacionado con otras tablas del sistema.");
+            return Redirect:: to($this->variable);
+        }
     }
 }

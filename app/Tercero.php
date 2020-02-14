@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Tercero extends Model
 {
@@ -11,8 +12,9 @@ class Tercero extends Model
     public $timestamps = false;
     
     public static function getLista(){
-        return static::select('*')
+        /*return static::select('*')
         ->orderBy('id','desc')
-        ->get();
+        ->get();*/
+        return \DB::select('call listarTerceros');
     }
 }
