@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('script_cabecera')
-
+{!! Html::style('dropzone/dropzone.css') !!}
 
 @endsection
 
@@ -48,8 +48,8 @@
 
                 <div class="col-sm-12 col-xs-12">
                 
-                    
-
+                  
+                
 
                 </div>
 
@@ -76,5 +76,50 @@
 
 @section('script_pie')
 
+{!! Html::script('/dropzone/dropzone.js') !!}
+{!! Html::script('/twitter-bootstrap-wizard-master/jquery.bootstrap.wizard.js') !!}
+{!! Html::script('/js/productos.js') !!}
+
+<script type="text/javascript">
+        Dropzone.options.myDropzone = {
+            autoProcessQueue: false,
+            uploadMultiple: true,
+            maxFilezise: 10,
+            maxFiles: 10,
+            addRemoveLinks: true, 
+            
+            init: function() {
+
+                var submitBtn = document.querySelector("#submit");
+                myDropzone = this;
+                
+                submitBtn.addEventListener("click", function(e){
+                    e.preventDefault();
+                    e.stopPropagation();
+                    myDropzone.processQueue();
+                });
+                var aux=0;
+                this.on("addedfile", function(file) {
+                    aux++;
+                });
+                
+                var aux2=0;
+                this.on("complete", function(file) {
+                    myDropzone.removeFile(file);
+                    aux2++;
+                    if(aux2==aux){
+                      alert("La operación se realizó con éxito");
+                      var url = ip+"/productos"; 
+                      $(location).attr('href',url);
+                    }
+                    //console.log(file)
+                });
+ 
+                this.on("success", 
+                    myDropzone.processQueue.bind(myDropzone)
+                );
+            }
+        };
+</script>
 
 @endsection
