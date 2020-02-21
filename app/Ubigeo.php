@@ -3,18 +3,16 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\DB;
 
-class Tercero extends Model
+class Ubigeo extends Model
 {
     protected $connection = 'medida';
-    protected $table = "tercero";
+    protected $table = "ubigeo";
     public $timestamps = false;
     
     public static function getLista(){
-        /*return static::select('*')
+        return static::select('*')
         ->orderBy('id','desc')
-        ->get();*/
-        return \DB::select('call listarTerceros');
+        ->get();
     }
 }
