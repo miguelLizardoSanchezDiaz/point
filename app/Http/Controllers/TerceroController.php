@@ -12,6 +12,9 @@ use App\User;
 use Session;
 use Crypt;
 
+use Peru\Http\ContextClient;
+use Peru\Jne\{Dni, DniParser};
+
 class TerceroController extends Controller
 {
     protected $variable='tercero';
@@ -153,5 +156,55 @@ class TerceroController extends Controller
             Session::flash('flash_error', "Acción no válida. El registro ya está relacionado con otras tablas del sistema.");
             return Redirect:: to($this->variable);
         }
+    }
+
+    public function valida_codigo(Request $request){
+        $codigo=$request->codigo;
+        $resultado=Tercero::where('ter_codigo','=',$codigo)->first();
+        if($resultado){
+            $r['estado']='si';
+        }
+        else{
+            $r['estado']='no';
+        }
+        return $r;
+    }
+
+    public function consultar_ruc_contribuyente(Request $request)
+    {
+        
+        $nro_ruc=$request->nro_ruc;
+
+        $curl_handle=curl_init();
+        curl_setopt($curl_handle, CURLOPT_URL,'http://demosprinter.anikamagroup.com/consulta_ruc/'.$nro_ruc);
+        curl_setopt($curl_handle, CURLOPT_CONNECTTIMEOUT, 2);
+        curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($curl_handle, CURLOPT_USERAGENT, 'Punto venta, Medida SAC');
+        $query = curl_exec($curl_handle);
+        curl_close($curl_handle);
+        return $query;
+
+    }
+
+    public function consultar_dni(Request $request){
+        $dni=$request->nro_dni;
+        /*$curl_handle=curl_init();
+        curl_setopt($curl_handle, CURLOPT_URL,'http://py-devs.com/api/dni/'.$dni.'/?format=json');
+        curl_setopt($curl_handle, CURLOPT_CONNECTTIMEOUT, 2);
+        curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($curl_handle, CURLOPT_HEADER, 'Content-Type: application/html');
+        curl_setopt($curl_handle, CURLOPT_USERAGENT, 'Punto Venta, Medida SAC');
+        $query = curl_exec($curl_handle);
+        curl_close($curl_handle);
+        return $query;*/
+        $cs = new Dni(new ContextClient(), new DniParser());
+
+        $person = $cs->get($dni);
+        if (!$person) {
+            return 'Not found';
+            exit();
+        }
+
+        return json_encode($person);
     }
 }

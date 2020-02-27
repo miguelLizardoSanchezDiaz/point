@@ -43,4 +43,15 @@ Route::group(['middleware'=>'auth'],function()
     ]);
     
     Route::resource('tercero','TerceroController');
+    Route::group(['prefix' => 'tercero'], function() {
+        Route::post('/valida_codigo',[
+           'as' =>'valida_codigo',
+           'uses'=>'TerceroController@valida_codigo']);
+        Route::post('/consultar_ruc_contribuyente',[
+            'as' =>'consultar_ruc_contribuyente',
+            'uses'=>'TerceroController@consultar_ruc_contribuyente']);
+        Route::post('/consultar_dni',[
+            'as' =>'consultar_dni',
+            'uses'=>'TerceroController@consultar_dni']);
+    });
 });

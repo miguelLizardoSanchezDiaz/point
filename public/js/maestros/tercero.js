@@ -19,6 +19,185 @@ $(document).ready(function(){
     }
 });
 
+$('#txt_codigo').change(function(){
+	var codigo=$("#txt_codigo").val();
+	valida_tercero(codigo);
+});
+
+function valida_tercero(codigo){
+ 	var frmNuevo=$("#frm_tercero");
+    $.ajax({
+        type:"POST",
+        url:ip+"/tercero/valida_codigo",
+        dataType:"JSON",
+        data:frmNuevo.serialize()+'&codigo='+codigo,
+        success:function(data){
+            if(data.estado=='si'){
+            	alert('El código ya existe verifique');
+            	$("#btn_guardar").prop('disabled', true);
+            }
+            else{
+            	$("#btn_guardar").prop('disabled', false);
+            	var tipo_doc=$("#cbo_documento").val();
+            	if (tipo_doc==1){
+            		consulta_numero_ruc(codigo);
+            	}
+            	else if (tipo_doc=2){
+            		consulta_numero_dni(codigo);
+            	}
+            }
+            
+        },
+        beforeSend:function(){
+        },
+        complete:function(){
+        }
+    });
+}
+
+function consulta_numero_ruc(ruc){
+	var frmNuevo=$("#frm_tercero");
+	$.ajax({
+		type:"POST",
+		url:ip +'/tercero/consultar_ruc_contribuyente',
+		dataType:"json",
+		data:frmNuevo.serialize()+'&nro_ruc='+ruc,//+'&id='+id,
+		success:function(data){
+			if(data.length==0)
+			{
+				alert('RUC no encontrado!!');
+			}
+			else
+			{
+				if (data[0].emp_tipo_via!='-') {
+					if (data[0].emp_numero!='-') {
+						if (data[0].emp_manzana=='-') {
+							if (data[0].emp_interior!='-') {
+								if (data[0].emp_departamento!='-') {
+									if (data[0].emp_codigo_zona!='-') {
+										var domicilio=data[0].emp_tipo_via+' '+data[0].emp_nombre_via+' NRO '+data[0].emp_numero+' INT '+data[0].emp_interior+' DPTO '+data[0].emp_departamento+' '+data[0].emp_codigo_zona+' '+data[0].emp_tipo_zona;
+									}
+									else{
+										var domicilio=data[0].emp_tipo_via+' '+data[0].emp_nombre_via+' NRO '+data[0].emp_numero+' INT '+data[0].emp_interior+' DPTO '+data[0].emp_departamento;
+									}
+								}
+								else{
+									if (data[0].emp_codigo_zona!='-') {
+										var domicilio=data[0].emp_tipo_via+' '+data[0].emp_nombre_via+' NRO '+data[0].emp_numero+' INT '+data[0].emp_interior+' '+data[0].emp_codigo_zona+' '+data[0].emp_tipo_zona;
+									}
+									else{
+										var domicilio=data[0].emp_tipo_via+' '+data[0].emp_nombre_via+' NRO '+data[0].emp_numero+' INT '+data[0].emp_interior;
+									}
+								}
+							}
+							else{
+								if (data[0].emp_departamento!='-') {
+									if (data[0].emp_codigo_zona!='-') {
+										var domicilio=data[0].emp_tipo_via+' '+data[0].emp_nombre_via+' NRO '+data[0].emp_numero+' DPTO '+data[0].emp_departamento+' '+data[0].emp_codigo_zona+' '+data[0].emp_tipo_zona;
+									}
+									else{
+										var domicilio=data[0].emp_tipo_via+' '+data[0].emp_nombre_via+' NRO '+data[0].emp_numero+' DPTO '+data[0].emp_departamento;
+									}
+								}
+								else{
+									if (data[0].emp_codigo_zona!='-') {
+										var domicilio=data[0].emp_tipo_via+' '+data[0].emp_nombre_via+' NRO '+data[0].emp_numero+' '+data[0].emp_codigo_zona+' '+data[0].emp_tipo_zona;
+									}
+									else{
+										var domicilio=data[0].emp_tipo_via+' '+data[0].emp_nombre_via+' NRO '+data[0].emp_numero;
+									}
+								}
+							}
+						}
+					}
+					else{
+						if (data[0].emp_departamento!='-') {
+							var domicilio=data[0].emp_tipo_via+' '+data[0].emp_nombre_via+' MZ '+data[0].emp_manzana+' DPTO '+data[0].emp_departamento+' '+data[0].emp_codigo_zona+' '+data[0].emp_tipo_zona;;
+						}
+						else if(data[0].emp_kilometro!='-'){
+							if (data[0].emp_codigo_zona!='-') {
+								var domicilio=data[0].emp_tipo_via+' '+data[0].emp_nombre_via+' KM '+data[0].emp_kilometro+' '+data[0].emp_codigo_zona+' '+data[0].emp_tipo_zona;
+							}
+							else{
+								var domicilio=data[0].emp_tipo_via+' '+data[0].emp_nombre_via+' KM '+data[0].emp_kilometro+' '+data[0].emp_tipo_zona;
+							}
+						}
+						else{
+							if (data[0].emp_codigo_zona!='-') {
+								var domicilio=data[0].emp_tipo_via+' '+data[0].emp_nombre_via+' MZ '+data[0].emp_manzana+' LOTE '+data[0].emp_lote+' INT '+data[0].emp_interior+' '+data[0].emp_tipo_zona;
+							}
+							else{
+								var domicilio=data[0].emp_tipo_via+' '+data[0].emp_nombre_via+' MZ '+data[0].emp_manzana+' LOTE '+data[0].emp_lote+' '+data[0].emp_codigo_zona+' '+data[0].emp_tipo_zona;
+							}
+						}
+					}	
+				}
+				else{
+					if (data[0].emp_numero=='-') {
+						if (data[0].emp_manzana!='-') {
+							if (data[0].emp_interior!='-') {
+								if (data[0].emp_departamento!='-') {
+									var domicilio=' MZ '+data[0].emp_manzana+' LOTE '+data[0].emp_lote+' INT '+data[0].emp_interior+' DPTO '+data[0].emp_departamento+' '+data[0].emp_codigo_zona+' '+data[0].emp_tipo_zona;
+								}
+								else{
+									var domicilio=' MZ '+data[0].emp_manzana+' LOTE '+data[0].emp_lote+' INT '+data[0].emp_interior+' '+data[0].emp_codigo_zona+' '+data[0].emp_tipo_zona;
+								}
+							}
+							else{
+								if (data[0].emp_departamento!='-') {
+									var domicilio=' MZ '+data[0].emp_manzana+' LOTE '+data[0].emp_lote+' DPTO '+data[0].emp_departamento+' '+data[0].emp_codigo_zona+' '+data[0].emp_tipo_zona;
+								}
+								else{
+									var domicilio=' MZ '+data[0].emp_manzana+' LOTE '+data[0].emp_lote+' '+data[0].emp_codigo_zona+' '+data[0].emp_tipo_zona;
+								}
+							}
+						}
+					}
+				}
+				
+				$("#txt_razonsocial").val(data[0].emp_descripcion);
+				$("#txt_direccion").val(domicilio);
+				
+			}
+		},
+		beforeSend:function(){
+			$("#img_loading_ruc").show();
+		},
+		complete:function(){
+            $("#img_loading_ruc").hide();
+		}
+	});
+}
+
+function consulta_numero_dni(dni){
+	var frmNuevo=$("#frm_tercero");
+	$.ajax({
+		type:"POST",
+		url:ip +'/tercero/consultar_dni',
+		dataType:"json",
+		data:frmNuevo.serialize()+'&nro_dni='+dni,//+'&id='+id,
+		success:function(data){
+			console.log(data);
+			if(data.length==0)
+			{
+				alert('DNI no encontrado!!');
+			}
+			else
+			{
+				$("#txt_nombre").val(data.nombres);
+				$("#txt_apellidopaterno").val(data.apellidoPaterno);
+				$("#txt_apellidomaterno").val(data.apellidoMaterno);
+			}
+		},
+		beforeSend:function(){
+			$("#img_loading_ruc").show();
+		},
+		complete:function(){
+            $("#img_loading_ruc").hide();
+		}
+	});
+}
+
 function validar_persona_empresa(){
 	var valor=$('#cbo_documento').val();
 	if (valor==2){
@@ -29,61 +208,4 @@ function validar_persona_empresa(){
 		$('#persona').hide();
 		$('#empresa').show();
 	}
-}
-
-function ver_lista_asignados(){
-	var frmNuevo=$("#form_asignar");
-
-	//var id_rol = document.forms.form_asignar.cbo_rol.value;
-	//alert(id_rol);
-	var datos = frmNuevo.serialize();//+'id_rol='+id_rol;
-	var url = ip+'/permiso/ver_permiso_asignado';
-	$.post(url, datos, function (resultado) {
-		$("#div_permisos_asignados").html(resultado);
-	});
-
-}
-
-function ver_lista_no_asignados(){
-	var frmNuevo=$("#form_asignar");
-	//var id_rol = document.forms.form_asignar.cbo_rol.value;
-	//alert(id_rol);
-	var datos = frmNuevo.serialize();//'id_rol='+id_rol;
-	var url = ip+'/permiso/ver_permiso_no_asignado';
-	$.post(url, datos, function (resultado) {
-  		$("#div_permisos_no_asignados").html(resultado);
-	});
-}
-
-function activar_asignar(){
-	$('#cmd_asignar').removeAttr('disabled')	
-	$('#cmd_quitar').attr("disabled","false")	
-}
-
-function activar_quitar(){
-	$('#cmd_asignar').attr("disabled","false")
-	$('#cmd_quitar').removeAttr('disabled')
-}
-function asignar_permiso(){
-	//var id_permiso = document.forms.form1.cbo_permisos.value
-	//var id_rol = document.forms.form1.cbo_rol.value
-	var frmNuevo=$("#form_asignar");
-	var datos = frmNuevo.serialize();//'id_rol='+id_rol+'&id_permiso='+id_permiso
-	var url = ip+'/permiso/asignar_permiso'
-	$.post(url, datos, function (resultado){
-		ver_lista_asignados();
-		ver_lista_no_asignados();
-	});
-}
-
-function quitar_permiso(){
-	//var id_permiso = document.forms.form1.cbo_permisos.value
-	//var id_rol = document.forms.form1.cbo_rol.value
-	var frmNuevo=$("#form_asignar");
-	var datos = frmNuevo.serialize();//'id_rol='+id_rol+'&id_permiso='+id_permiso
-	var url = ip+'/permiso/quitar_permiso';
-	$.post(url, datos, function (resultado){
-		ver_lista_asignados();
-		ver_lista_no_asignados();
-	});
 }
