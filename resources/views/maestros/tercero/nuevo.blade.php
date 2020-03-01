@@ -42,8 +42,10 @@
                     </div>
 
                     <form id="frm_tercero" class="col-sm-12 col-xs-12" method="POST" action="{{url($variable)}}" accept-charset="UTF-8" enctype="multipart/form-data">
-                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                <fieldset>
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        <fieldset>
+                        <div class="row">
+                            <div class="col-sm-4 col-xs-12">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Documnto Identidad</label>
                                         <select class="form-control" id="cbo_documento" name="cbo_documento" onchange="validar_persona_empresa()">
@@ -52,37 +54,61 @@
                                             @endforeach
                                         </select>
                                     </div>
+                            </div>
+                            <div class="col-sm-4 col-xs-12">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Código (*)</label>
                                         {!! Form::text('txt_codigo',null,['class' => 'form-control','id'=>'txt_codigo', 'maxlength'=>'250','placeholder'=>'Ingrese codigo']) !!}
                                     </div>
-                                    <div id="empresa">
+                            </div>
+                        </div>
+                        <div id="empresa">
+                            <div class="row">
+                                <div class="col-sm-6 col-xs-12">
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Razon Social (*)</label>
                                             {!! Form::text('txt_razonsocial',null,['class' => 'form-control','id'=>'txt_razonsocial', 'maxlength'=>'250','placeholder'=>'Ingrese razón social']) !!}
                                         </div>
+                                </div>
+                                <div class="col-sm-6 col-xs-12">
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Nombre Comercial (*)</label>
                                             {!! Form::text('txt_nombreComercial',null,['class' => 'form-control','id'=>'txt_nombreComercial', 'maxlength'=>'250','placeholder'=>'Ingrese nombre comercial']) !!}
                                         </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6 col-xs-12">
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Pagina Web</label>
                                             {!! Form::text('txt_web',null,['class' => 'form-control','id'=>'txt_web', 'maxlength'=>'250','placeholder'=>'Ingrese pagina web']) !!}
                                         </div>
-                                    </div>
-                                    <div id="persona">
+                                </div>
+                            </div>
+                        </div>
+                        <div id="persona">
+                            <div class="row">
+                                <div class="col-sm-4 col-xs-12">
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Nombres (*)</label>
                                             {!! Form::text('txt_nombre',null,['class' => 'form-control','id'=>'txt_nombre', 'maxlength'=>'250','placeholder'=>'Ingrese nombre']) !!}
                                         </div>
+                                </div>
+                                <div class="col-sm-4 col-xs-12">
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Apellido Paterno (*)</label>
                                             {!! Form::text('txt_apellidopaterno',null,['class' => 'form-control','id'=>'txt_apellidopaterno', 'maxlength'=>'250','placeholder'=>'Ingrese apellido paterno']) !!}
                                         </div>
+                                </div>
+                                <div class="col-sm-4 col-xs-12">
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Apellido Materno (*)</label>
                                             {!! Form::text('txt_apellidomaterno',null,['class' => 'form-control','id'=>'txt_apellidomaterno', 'maxlength'=>'250','placeholder'=>'Ingrese apellido materno']) !!}
                                         </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4 col-xs-12">
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Fecha Nacimiento (*)</label>
                                             <div class="input-group">
@@ -92,7 +118,11 @@
                                                 <input type="text" class="form-control" id="txt_nacimiento" name="txt_nacimiento" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask>
                                             </div>
                                         </div>
-                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4 col-xs-12">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Tipo tercero (*)</label>
                                         <select class="form-control" id="cbo_tipo" name="cbo_tipo">
@@ -101,14 +131,14 @@
                                             @endforeach
                                         </select>
                                     </div>
+                            </div>
+                            <div class="col-sm-4 col-xs-12">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Telefono</label>
                                             {!! Form::text('txt_telefono',null,['class' => 'form-control','id'=>'txt_telefono', 'maxlength'=>'250','placeholder'=>'Ingrese telefono']) !!}
                                     </div>
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Dirección (*)</label>
-                                            {!! Form::text('txt_direccion',null,['class' => 'form-control','id'=>'txt_direccion', 'maxlength'=>'250','placeholder'=>'Ingrese dirección']) !!}
-                                    </div>
+                            </div>
+                            <div class="col-sm-4 col-xs-12">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Ubigeo</label>
                                         <select class="form-control select2bs4" style="width: 100%;" id="cbo_ubigeo" name="cbo_ubigeo">
@@ -117,6 +147,16 @@
                                             @endforeach
                                         </select>
                                     </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 col-xs-12">            
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Dirección (*)</label>
+                                            {!! Form::text('txt_direccion',null,['class' => 'form-control','id'=>'txt_direccion', 'maxlength'=>'250','placeholder'=>'Ingrese dirección']) !!}
+                                    </div>
+                            </div>
+                        </div>
                                     <div class="form-group">
                                     <label>(*) Campos Obligatorios</label>
                                     </div>
