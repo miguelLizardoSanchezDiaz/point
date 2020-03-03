@@ -30,26 +30,125 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-md-12">
-            <div class="card">
+            <div class="card card-info">
               <div class="card-header">
-                <h3 class="card-title">Nuevo Productos</h3>
+                <h3 class="card-title">Nuevo Producto</h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
                 <div class="row">
-                    <div class="col-sm-6 col-xs-12">
-                        <a href="{{route($variable.'.create')}}" class="btn btn-xs btn-success"><span class="fas fa-plus"></span> Nueva Entrada</a>
-                    </div>
+                    
                     <div class="col-sm-6 col-xs-12">
                         @include('mensajes.successful')
                     </div>
                 </div>
-                <br>
+                
 
                 <div class="col-sm-12 col-xs-12">
                 
+                <form role="form">
+                  <div class="row">
+                    <div class="col-sm-4">
+                      <div class="form-group">
+                        <label>Código</label>
+                        <input type="text" class="form-control" id="txt_codigo" name="txt_codigo" placeholder="Código">
+                      </div>
+                    </div>
+                    <div class="col-sm-8">
+                      <div class="form-group">
+                        <label>Descripción</label>
+                        <input type="text" class="form-control" placeholder="Descripción" id="txt_descripcion" name="txt_descripcion">
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-sm-4">
+                      <div class="form-group">
+                        <label>Categoría</label>
+                        <div class="input-group mb-3">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fa fa-filter"></i></span>
+                          </div>
+                          <input type="text" class="form-control" id="txt_categoria" name="txt_categoria" placeholder="Buscar por código o descripción...">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-4">
+                      <div class="form-group">
+                        <label>Tipo de producto</label>
+                        <select class="custom-select">
+                          <option value="M">Mercadería</option>
+                          <option value="S">Servicio</option>
+                        </select>
+                      </div>
+                      </div>
+                    
+                    <div class="col-sm-2">
+                      <div class="form-group">
+                        <label>Peso</label>
+                        <input type="number" class="form-control" placeholder="Peso">
+                      </div>
+                    </div>
+                    <div class="col-sm-2">
+                      <div class="form-group">
+                        <label>Volumen</label>
+                        <input type="number" class="form-control" placeholder="Volumen">
+                      </div>
+                    </div>
+                    
+                  </div>
+
+                  <div class="row">
+                    <div class="col-sm-4">
+                      <div class="form-group">
+                        <label>Unidad de Medida</label>
+                        <div class="input-group mb-3">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fa fa-filter"></i></span>
+                          </div>
+                          <input type="text" class="form-control" id="txt_marca" name="txt_marca" placeholder="Buscar por código o descripción...">
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-sm-4">
+                      <div class="form-group">
+                        <label>Marca</label>
+                        <div class="input-group mb-3">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fa fa-filter"></i></span>
+                          </div>
+                          <input type="text" class="form-control" id="txt_marca" name="txt_marca" placeholder="Buscar por código o descripción...">
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-sm-4">
+                      <div class="form-group">
+                        <label>Modelo</label>
+                        <div class="input-group mb-3">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fa fa-filter"></i></span>
+                          </div>
+                          <input type="text" class="form-control" id="txt_modelo" name="txt_modelo" placeholder="Buscar por código o descripción...">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <div class="form-group">
+                        <label>Otras características</label>
+                        <textarea class="form-control" rows="3" placeholder="Ingresar"></textarea>
+                      </div>
+                    </div>
+                  </div>
+
                   
-                
+                </form>
+
 
                 </div>
 
