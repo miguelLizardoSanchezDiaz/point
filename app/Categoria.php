@@ -17,4 +17,13 @@ class Categoria extends Model
         ->orderBy('cat_codigo','asc')
         ->get();
     }
+
+    public static function findByCodigoOrDescription($term)
+    {
+        return static::select('*',DB::raw('concat(cat_codigo," | ",cat_descripcion) as name'))
+            ->Where(DB::raw('concat(cat_codigo," ",cat_descripcion)'),'LIKE',"%$term%")
+            ->Where('cat_estado','!=',0)
+            ->limit(50)
+            ->get();
+    }
 }

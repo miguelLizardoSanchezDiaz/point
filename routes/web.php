@@ -54,4 +54,6 @@ Route::group(['middleware'=>'auth'],function()
             'as' =>'consultar_dni',
             'uses'=>'TerceroController@consultar_dni']);
     });
+
+    Route::get('/autocomplete/filtrarCategoria','AutocompleteController@BuscarCategoria');
 });

@@ -66,14 +66,29 @@
                     <div class="col-sm-4">
                       <div class="form-group">
                         <label>Categoría</label>
-                        <div class="input-group mb-3">
+                        <!--<div class="input-group mb-3">
                           <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="fa fa-filter"></i></span>
+                            <span class="input-group-text">$</span>
                           </div>
-                          <input type="text" class="form-control" id="txt_categoria" name="txt_categoria" placeholder="Buscar por código o descripción...">
+                          <input type="text" class="form-control has-feedback-left typeahead" id="txt_categoria" name="txt_categoria" placeholder="Buscar por código o descripción...">
+                        </div>
+                        <input type="hidden" name="txt_id_categoria" id="txt_id_categoria">-->
+
+                        <!--<input type="text" class="form-control has-feedback-left typeahead" id="txt_categoria" name="txt_categoria" placeholder="Buscar por código o descripción">
+                        <span class="fa fa-filter form-control-feedback left" aria-hidden="true"></span>
+                        <input type="hidden" id="txt_id_categoria" name="txt_id_categoria">-->
+
+                        <div class="input-group input-group-sm">
+                          <span class="input-group-btn">
+                            <button class="btn btn-personalizado" type="button"><i class="fa fa-filter"></i></button>
+                          </span>
+                          <input id="txt_categoria" type="text" class="form-control input-personalizado" name="txt_categoria">
+                        </div>
+
                         </div>
                       </div>
-                    </div>
+                    
+
                     <div class="col-sm-4">
                       <div class="form-group">
                         <label>Tipo de producto</label>

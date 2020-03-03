@@ -13,3 +13,5 @@
 {!! Html::script('adminlte/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') !!}
 <!-- AdminLTE App -->
 {!! Html::script('adminlte/dist/js/adminlte.js') !!}
+
+{!! Html::script('/js/typeahead/typeahead.bundle.js') !!}
