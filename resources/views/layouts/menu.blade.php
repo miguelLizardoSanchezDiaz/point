@@ -71,6 +71,30 @@
                 </a>
               </li>
               <li class="nav-item">
+                <a href="{{url('categorias')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Categorias</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{url('marcas')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Marcas</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{url('modelos')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Modelos</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{url('unidad-medida')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Unidades de Medida</p>
+                </a>
+              </li>
+              <li class="nav-item">
                 <a href="{{url('tercero')}}" class="nav-link active">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Terceros</p>
