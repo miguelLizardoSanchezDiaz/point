@@ -77,6 +77,7 @@ class TerceroController extends Controller
         }
         $tercero->ter_telefono1=$request->txt_telefono;
         $tercero->ter_direccion=$request->txt_direccion;
+        $tercero->ter_email=$request->txt_mail;
         $tercero->doi_id=$tipoDocumento;
         $tercero->ubi_id=$request->cbo_ubigeo;
         $tercero->tit_id=$request->cbo_tipo;
@@ -123,6 +124,7 @@ class TerceroController extends Controller
         }
         $tercero->ter_telefono1=$request->txt_telefono;
         $tercero->ter_direccion=$request->txt_direccion;
+        $tercero->ter_email=$request->txt_mail;
         $tercero->doi_id=$tipoDocumento;
         $tercero->ubi_id=$request->cbo_ubigeo;
         $tercero->tit_id=$request->cbo_tipo;
