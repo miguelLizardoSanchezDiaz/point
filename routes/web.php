@@ -56,4 +56,6 @@ Route::group(['middleware'=>'auth'],function()
     });
 
     Route::get('/autocomplete/filtrarCategoria','AutocompleteController@BuscarCategoria');
+    Route::get('/autocomplete/filtrarUmedida','AutocompleteController@BuscarUmedida');
+    
 });

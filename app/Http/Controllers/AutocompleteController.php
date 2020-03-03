@@ -13,5 +13,11 @@ class AutocompleteController extends Controller
         $term=Request::get('query');
         return Categoria::findByCodigoOrDescription($term);
     }
+    
+    public function BuscarUmedida()
+    {
+        $term=Request::get('query');
+        return Categoria::findByCodigoOrDescription($term);
+    }
 
 }

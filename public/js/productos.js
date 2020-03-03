@@ -150,3 +150,36 @@ $('#txt_categoria').typeahead({
     
 });
 
+$('#txt_umedida').typeahead({
+        hint: true,
+        highlight: true,
+        minLength: 1
+    },
+    {
+        name: 'data',
+        displayKey: 'name',
+        source: function (query,process) {
+            $.ajax({
+                url:ip+'/autocomplete/filtrarUmedida',
+                type:'GET',
+                data:'query=' + query,
+                dataType:'JSON',
+                async:'false',
+                success: function (data) {
+                    bondObjs = {};
+                    bondNames = [];
+
+                    $.each( data, function (i,item){
+                        bondNames.push({id:item.id,name:item.name,codigo:item.codigo});
+                        bondObjs[ item.id ] = item.id;
+                        bondObjs[ item.name ] = item.name;
+                        //bondObjs[ item.codigo ] = item.codigo;
+                    });
+                    process(bondNames);
+                }
+            });
+        }
+    }).on('typeahead:selected', function (even,datum) {
+    $("#txt_id_umedida").val(bondObjs[datum.id]);
+});
+

@@ -82,7 +82,8 @@
                           <span class="input-group-btn">
                             <button class="btn btn-personalizado" type="button"><i class="fa fa-filter"></i></button>
                           </span>
-                          <input id="txt_categoria" type="text" class="form-control input-personalizado" name="txt_categoria">
+                          <input id="txt_categoria" type="text" class="form-control input-personalizado" name="txt_categoria" placeholder="Buscar por código o descripción">
+                          <input type="hidden" id="txt_id_categoria" name="txt_id_categoria">
                         </div>
 
                         </div>
@@ -118,12 +119,15 @@
                     <div class="col-sm-4">
                       <div class="form-group">
                         <label>Unidad de Medida</label>
-                        <div class="input-group mb-3">
-                          <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="fa fa-filter"></i></span>
-                          </div>
-                          <input type="text" class="form-control" id="txt_marca" name="txt_marca" placeholder="Buscar por código o descripción...">
+                        <div class="input-group input-group-sm">
+                          <span class="input-group-btn">
+                            <button class="btn btn-personalizado" type="button"><i class="fa fa-filter"></i></button>
+                          </span>
+                          <input type="text" class="form-control input-personalizado" name="txt_umedida" placeholder="Buscar por código o descripción" id="txt_umedida">
+                          <input type="hidden" id="txt_id_umedida" name="txt_id_umedida">
                         </div>
+
+
                       </div>
                     </div>
 
