@@ -63,49 +63,64 @@
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
+
             <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="{{url('producto')}}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Productos</p>
-                </a>
+
+              <li class="nav-item has-treeview">
+
+              <a href="#" class="nav-link ">
+                <i class="far fa-circle nav-icon"></i>
+                <p>
+                  Productos
+                  <i class="right fas fa-angle-left"></i>
+                </p>
+              </a>
+
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="{{url('producto')}}" class="nav-link">
+                    <i class="far fa-dot-circle nav-icon"></i>
+                    <p>Productos</p>
+                  </a>
+                </li>
+
+                <li class="nav-item">
+                  <a href="{{url('categorias')}}" class="nav-link">
+                    <i class="far fa-dot-circle nav-icon"></i>
+                    <p>Categorias</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="{{url('marcas')}}" class="nav-link">
+                    <i class="far fa-dot-circle nav-icon"></i>
+                    <p>Marcas</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="{{url('modelos')}}" class="nav-link">
+                    <i class="far fa-dot-circle nav-icon"></i>
+                    <p>Modelos</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="{{url('unidad-medida')}}" class="nav-link">
+                    <i class="far fa-dot-circle nav-icon"></i>
+                    <p>Unidades de Medida</p>
+                  </a>
+                </li>
+
+              </ul>
               </li>
+
+              
+              
               <li class="nav-item">
-                <a href="{{url('categorias')}}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Categorias</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{url('marcas')}}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Marcas</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{url('modelos')}}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Modelos</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{url('unidad-medida')}}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Unidades de Medida</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{url('tercero')}}" class="nav-link active">
+                <a href="{{url('tercero')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Terceros</p>
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="./index3.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Categorías</p>
-                </a>
-              </li>
+
               <li class="nav-item">
                 <a href="./index3.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>

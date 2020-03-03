@@ -28,14 +28,14 @@ class ProductoController extends Controller
         $cbo_web=$request->cbo_web;
         $txt_descripcion=$request->txt_descripcion;
 
-        $categorias=Categoria::getCategoriasPrincipales();
+        //$categorias=Categoria::getCategoriasPrincipales();
         $marcas=Marca::getListaIndex();
         $variable=$this->variable;
         if(valida_privilegio($this->permiso)==0){return view('layouts.no_privilegio',compact('variable'));}
 
     	$productos=Producto::getListaIntranet($txt_codigo,$cbo_categoria1,$cbo_categoria2,$cbo_categoria3,$cbo_marca,$cbo_web,$txt_descripcion);
     	
-    	return view('maestros.productos.listado',compact('productos','variable','tipoproceso','categorias','cbo_categoria1','cbo_categoria2','cbo_categoria3','txt_codigo','marcas','cbo_marca','cbo_web','txt_descripcion'));
+    	return view('maestros.productos.listado',compact('productos','variable','tipoproceso','cbo_categoria1','cbo_categoria2','cbo_categoria3','txt_codigo','marcas','cbo_marca','cbo_web','txt_descripcion'));
     }
 
     public function create()
@@ -46,6 +46,20 @@ class ProductoController extends Controller
         //$departamentos=Departamento::listaCombo();
         $marcas=Marca::getListaIndex();
         return view('maestros.productos.nuevo',compact('variable','tipoproceso','marcas'));
+    }
+
+    public function store(Request $request)
+    {
+        $variable=$this->variable;
+        if(valida_privilegio($this->permiso)==0){return view('layouts.no_privilegio',compact('variable'));}
+
+        $this->validate($request, 
+            [
+                'txt_codigo'=>['required','max:11'],
+            ]);
+
+        Session::flash('flash_message', 'Registro guardado correctamente!');
+        return Redirect::to($this->variable);
     }
 
 }
