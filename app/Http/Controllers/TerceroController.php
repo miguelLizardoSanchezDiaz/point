@@ -36,7 +36,7 @@ class TerceroController extends Controller
         $ubigeos=Ubigeo::getLista();
         return view('maestros.tercero.nuevo',compact('variable','tipostercero','documentosidentidad','ubigeos'));
     }
-    
+
     public function store(Request $request)
     {
         $variable=$this->variable;
@@ -56,6 +56,8 @@ class TerceroController extends Controller
             $this->validate($request, 
             ['txt_codigo'=>['required','max:11'],
             'txt_nombre'=>['required','max:250'],
+            'txt_apellidopaterno'=>['required','max:250'],
+            'txt_apellidomaterno'=>['required','max:250'],
             'txt_nacimiento'=>['required'],
             'txt_direccion'=>['required','max:250']
             ]);

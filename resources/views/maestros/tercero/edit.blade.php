@@ -47,7 +47,7 @@
                         <div class="row">
                             <div class="col-sm-4 col-xs-12">
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Documnto Identidad</label>
+                                    <label for="exampleInputEmail1">Documento Identidad</label>
                                     <select class="form-control" id="cbo_documento" value="$tercero->doid_id" name="cbo_documento" onchange="validar_persona_empresa()">
                                         @foreach($documentosidentidad as $documento)
                                             <option value="{{$documento->id}}" @if($tercero->doi_id==$documento->id) selected @endif>{{$documento->doi_descripcion}}</option>
@@ -59,6 +59,16 @@
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Código (*)</label>
                                     {!! Form::text('txt_codigo',$tercero->ter_codigo,['class' => 'form-control','id'=>'txt_codigo', 'maxlength'=>'250','placeholder'=>'Ingrese usuario','readonly'=>'readonly']) !!}
+                                </div>
+                            </div>
+                            <div class="col-sm-4 col-xs-12">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Tipo tercero (*)</label>
+                                    <select class="form-control" id="cbo_tipo" name="cbo_tipo">
+                                        @foreach($tipostercero as $tipo)
+                                            <option value="{{$tipo->id}}" @if($tercero->tit_id==$tipo->id) selected @endif>{{$tipo->tit_descripcion}}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -77,14 +87,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-sm-6 col-xs-12">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Pagina Web</label>
-                                        {!! Form::text('txt_web',$tercero->ter_web,['class' => 'form-control','id'=>'txt_web', 'maxlength'=>'250','placeholder'=>'Ingrese pagina web']) !!}
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                         <div id="persona">
                             <div class="row">
@@ -94,23 +96,21 @@
                                         {!! Form::text('txt_nombre',$tercero->ter_nombres,['class' => 'form-control','id'=>'txt_nombre', 'maxlength'=>'250','placeholder'=>'Ingrese nombre']) !!}
                                     </div>
                                 </div>
-                                <div class="col-sm-4 col-xs-12">
+                                <div class="col-sm-3 col-xs-12">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Apellido Paterno (*)</label>
                                         {!! Form::text('txt_apellidopaterno',$tercero->ter_apellido_paterno,['class' => 'form-control','id'=>'txt_apellidopaterno', 'maxlength'=>'250','placeholder'=>'Ingrese apellido paterno']) !!}
                                     </div>
                                 </div>
-                                <div class="col-sm-4 col-xs-12">
+                                <div class="col-sm-3 col-xs-12">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Apellido Materno (*)</label>
                                         {!! Form::text('txt_apellidomaterno',$tercero->ter_apellido_materno,['class' => 'form-control','id'=>'txt_apellidomaterno', 'maxlength'=>'250','placeholder'=>'Ingrese apellido materno']) !!}
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-4 col-xs-12">
+                                <div class="col-sm-2 col-xs-12">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Fecha Nacimiento (*)</label>
+                                        <label for="exampleInputEmail1">Fecha Nac. (*)</label>
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
@@ -125,17 +125,7 @@
                         <div class="row">
                             <div class="col-sm-4 col-xs-12">
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Tipo tercero (*)</label>
-                                    <select class="form-control" id="cbo_tipo" name="cbo_tipo">
-                                        @foreach($tipostercero as $tipo)
-                                            <option value="{{$tipo->id}}" @if($tercero->tit_id==$tipo->id) selected @endif>{{$tipo->tit_descripcion}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-sm-4 col-xs-12">
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Telefono</label>
+                                    <label for="exampleInputEmail1">Télefono</label>
                                         {!! Form::text('txt_telefono',$tercero->ter_telefono1,['class' => 'form-control','id'=>'txt_telefono', 'maxlength'=>'250','placeholder'=>'Ingrese telefono']) !!}
                                 </div>
                             </div>
@@ -145,11 +135,17 @@
                                     {!! Form::text('txt_mail',$tercero->ter_email,['class' => 'form-control','id'=>'txt_mail', 'maxlength'=>'250','placeholder'=>'Ingrese E-mail']) !!}
                                 </div>
                             </div>
+                            <div class="col-sm-4 col-xs-12">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Pagina Web</label>
+                                    {!! Form::text('txt_web',$tercero->ter_web,['class' => 'form-control','id'=>'txt_web', 'maxlength'=>'250','placeholder'=>'Ingrese pagina web']) !!}
+                                </div>
+                            </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-4 col-xs-12">
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Ubigeo</label>
+                                    <label for="exampleInputEmail1">UBIGEO</label>
                                     <select class="form-control select2bs4" style="width: 100%;" id="cbo_ubigeo" name="cbo_ubigeo">
                                         @foreach($ubigeos as $ubigeo)
                                             <option value="{{$ubigeo->id}}">{{$ubigeo->ubi_descripcion}}</option>

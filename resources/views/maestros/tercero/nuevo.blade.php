@@ -120,9 +120,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                
-                            </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-4 col-xs-12">
@@ -138,12 +135,12 @@
                                 </div>
                             </div>
                             
-                                <div class="col-sm-4 col-xs-12">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Página Web</label>
-                                        {!! Form::text('txt_web',null,['class' => 'form-control','id'=>'txt_web', 'maxlength'=>'250','placeholder'=>'Ingrese pagina web']) !!}
-                                    </div>
+                            <div class="col-sm-4 col-xs-12">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Página Web</label>
+                                    {!! Form::text('txt_web',null,['class' => 'form-control','id'=>'txt_web', 'maxlength'=>'250','placeholder'=>'Ingrese pagina web']) !!}
                                 </div>
+                            </div>
                             
                         </div>
                         <div class="row">
