@@ -51,7 +51,7 @@
                   <thead>                  
                     <tr>
                         <th>Código</th>
-                        <th>Nombre Comercial</th>
+                        <th>Nombre/ Razón Social</th>
                         <th>Ubigeo</th>
                         <th>Editar</th>
                         <th>Eliminar</th>
