@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Request;
 
 use App\Categoria;
+use App\Umedida;
+use App\Marca;
 
 class AutocompleteController extends Controller
 {
@@ -17,7 +19,13 @@ class AutocompleteController extends Controller
     public function BuscarUmedida()
     {
         $term=Request::get('query');
-        return Categoria::findByCodigoOrDescription($term);
+        return Umedida::findByCodigoOrDescription($term);
     }
+    public function BuscarMarca()
+    {
+        $term=Request::get('query');
+        return Marca::findByCodigoOrDescription($term);
+    }
+
 
 }

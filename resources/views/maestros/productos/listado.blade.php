@@ -46,29 +46,16 @@
                 </div>
                 <br>
                 <div class="row">
-                                {{--<div class="col-sm-2 col-xs-12">
-                                   <button class="btn btn-sm btn-primary" id="btnSincronizar" name="btnSincronizar"><span class="glyphicon glyphicon-refresh"></span> Sincronizar con Sprinter</button>
-                                </div>--}}
-
-                                <div class="col-sm-12 col-xs-12">
-                                    <form class="form form-horizontal" id="frm_nuevo" name="frm_nuevo" action="#" method="get">
-                                        <input type="hidden" name="_token" id="_token" value="{{ csrf_token() }}">
-                                        <div class="col-sm-2 col-xs-12">
-                                            <div class="form-group">
-                                                <select class="form-control" id="cbo_web" name="cbo_web">
-                                                    {{--<option value="">- Se ve en Web -</option>--}}
-                                                    <option value="1" @if($cbo_web=='1') selected="" @endif>SI</option>
-                                                    <option value="0" @if($cbo_web=='0') selected="" @endif>NO</option>
-                                                </select>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-sm-2 col-xs-12">
+                    <div class="col-sm-12 col-xs-12">
+                        <form class="form form-horizontal" id="frm_nuevo" name="frm_nuevo" action="#" method="get">
+                            <input type="hidden" name="_token" id="_token" value="{{ csrf_token() }}">
+                            <div class="row">
+                                <div class="col-sm-2 col-xs-12">
                                             <div class="form-group">
                                             <select class="form-control" id="cbo_marca" name="cbo_marca">
                                                 <option value="">-Marcas-</option>
                                                 @foreach($marcas as $marca)
-                                                    <option value="{{$marca->id}}" @if($marca->id==$cbo_marca) selected @endif>{{$marca->mar_nombre}}</option>
+                                                    <option value="{{$marca->id}}" @if($marca->id==$cbo_marca) selected @endif>{{$marca->mar_descripcion}}</option>
                                                 @endforeach
                                             </select>
                                             </div>
@@ -80,48 +67,25 @@
                                             </div>
                                         </div>
 
-                                        <div class="col-sm-6 col-xs-12">
+                                        <div class="col-sm-5 col-xs-12">
                                             <div class="form-group">
                                                 <input type="text" name="txt_descripcion" id="txt_descripcion" placeholder="Descripción" value="{{$txt_descripcion}}" class="form-control">
                                             </div>
                                         </div>
 
-                                        <input type="hidden" name="txt_tipo_proceso" id="txt_tipo_proceso" value="{{$tipoproceso}}">
-                                        <div class="col-sm-3 col-xs-12" style="margin-top: 15px">
-                                            <div class="form-group">
-                                            <select class="form-control" id="cbo_categoria1" name="cbo_categoria1">
-                                                <option value="">-TODOS-</option>
-                                                @foreach($categorias as $categoria)
-                                                    {{--<option value="{{$departamento->id}}" @if($departamento->id==$departamento_id) selected @endif>{{$departamento->departamento}}</option>--}}
-                                                    <option value="{{$categoria->cat_codigo}}" @if($categoria->cat_codigo==$cbo_categoria1) selected @endif>{{$categoria->cat_descripcion}}</option>
-                                                @endforeach
-                                            </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-2 col-xs-12" style="margin-top: 15px">
-                                            <div class="form-group"> 
-                                                <select class="form-control" id="cbo_categoria2" name="cbo_categoria2">
-                                                
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-2 col-xs-12" style="margin-top: 15px">
-                                            <div class="form-group">
-                                                <select class="form-control" id="cbo_categoria3" name="cbo_categoria3">
-                                            </select>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="col-sm-1 col-xs-12" style="text-align: right;margin-top: 15px">
+
+                                <div class="col-sm-1 col-xs-12" style="text-align: right">
                                             <button type="submit" class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-filter"></span> Filtrar</button>
                                         </div>
-                                        <div class="col-sm-2 col-xs-12" style="margin-top: 15px">
+                                        <div class="col-sm-2 col-xs-12">
                                             <a href="{{route($variable.'.create')}}" class="btn btn-sm btn-success"><span class="glyphicon glyphicon-plus"></span> Nueva Entrada</a>
                                             <br><br>
                                         </div>
+                                        
+                            </div>
 
                                     </form>
-                                </div>
+                    </div>
                 </div>
 
                 <div class="col-sm-12 col-xs-12">

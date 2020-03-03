@@ -56,8 +56,11 @@ Route::group(['middleware'=>'auth'],function()
     });
 
     Route::resource('categorias','CategoriaController');
+    Route::group(['prefix' => 'autocomplete'], function() {
+        Route::get('/filtrarCategoria','AutocompleteController@BuscarCategoria');
+        Route::get('/filtrarUnidadMedida','AutocompleteController@BuscarUmedida');
+        Route::get('/filtrarMarca','AutocompleteController@BuscarMarca');
+    });
 
-    Route::get('/autocomplete/filtrarCategoria','AutocompleteController@BuscarCategoria');
-    Route::get('/autocomplete/filtrarUmedida','AutocompleteController@BuscarUmedida');
     
 });
