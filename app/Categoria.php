@@ -10,10 +10,10 @@ class Categoria extends Model
     protected $table = "categoria";
     public $timestamps = false;
 
-    public static function getCategoriasPrincipales(){
+    public static function getCategorias(){
         return static::select('*')
         ->where('cat_estado',1)
-        ->where(DB::raw('CHARACTER_length(cat_codigo)'),4)
+        //->where(DB::raw('CHARACTER_length(cat_codigo)'),2)
         ->orderBy('cat_codigo','asc')
         ->get();
     }

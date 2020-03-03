@@ -12,7 +12,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Gestionar Terceros</h1>
+            <h1>Gestionar Categorias</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -31,7 +31,7 @@
           <div class="col-md-12">
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Listado de Terceros</h3>
+                <h3 class="card-title">Listado de Categorias</h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
@@ -48,20 +48,18 @@
                   <thead>                  
                     <tr>
                         <th>Código</th>
-                        <th>Nombre/ Razón Social</th>
-                        <th>Ubigeo</th>
+                        <th>Descripción</th>
                         <th>Editar</th>
                         <th>Eliminar</th>
                     </tr>
                   </thead>
                   <tbody>
-                    @foreach($terceros as $tercero)
+                    @foreach($categorias as $categoria)
                     <tr class="">
-                        <td>{{$tercero->ter_codigo}}</td>
-                        <td>{{$tercero->ter_nombre_comercial}}</td>
-                        <td>{{$tercero->ter_ubigeo}}</td>
-                        <td align="center"><a href="{{route($variable.'.edit',$tercero->id)}}" class="btn btn-sm btn-primary"><span class="fas fa-edit"></span></a></td>
-                        <td align="center"><a href="{{route($variable.'.show',$tercero->id)}}" class="btn btn-sm btn-danger"><span class="fas fa-trash-alt"></span></a></td>
+                        <td>{{$categoria->cat_codigo}}</td>
+                        <td>{{$categoria->cat_descripcion}}</td>
+                        <td align="center"><a href="{{route($variable.'.edit',$categoria->id)}}" class="btn btn-sm btn-primary"><span class="fas fa-edit"></span></a></td>
+                        <td align="center"><a href="{{route($variable.'.show',$categoria->id)}}" class="btn btn-sm btn-danger"><span class="fas fa-trash-alt"></span></a></td>
                     </tr>
                     @endforeach
                   </tbody>
@@ -86,5 +84,5 @@
 @endsection
 
 @section('script_pie')
-
+	
 @endsection

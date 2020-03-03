@@ -27,7 +27,7 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-md-12">
-            <div class="card">
+            <div class="card card-info">
               <div class="card-header">
                 <h3 class="card-title">Nuevo Tercero</h3>
               </div>
@@ -58,7 +58,7 @@
                             <div class="col-sm-4 col-xs-12">
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Código (*)</label>
-                                    {!! Form::text('txt_codigo',null,['class' => 'form-control','id'=>'txt_codigo', 'maxlength'=>'250','placeholder'=>'Ingrese codigo']) !!}
+                                    {!! Form::text('txt_codigo',null,['class' => 'form-control','id'=>'txt_codigo', 'maxlength'=>'250','placeholder'=>'Ingrese código']) !!}
                                 </div>
                             </div>
                         </div>
