@@ -9,12 +9,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Gestionar Terceros</h1>
+            <h1>Gestionar Marcas</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="{{url('home')}}">Inicio</a></li>
-              <li class="breadcrumb-item active">Eliminar Tercero</li>
+              <li class="breadcrumb-item active">Eliminar Marca</li>
             </ol>
           </div>
         </div>
@@ -27,7 +27,7 @@
           <div class="col-md-12">
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Eliminar Terceros</h3>
+                <h3 class="card-title">Eliminar Marca</h3>
               </div>
               <div class="card-body">
                 <div class="row">
@@ -39,11 +39,11 @@
                     </div>
                   </div>
                   <div class="">
-                       <center><h5><span class="fa fa-warning" style="color: #d43f3a"></span> ATENCIÓN. Está a punto de eliminar el tercero con código: <b>{{$tercero->ter_codigo}}</b></h5></center><hr>
+                       <center><h5><span class="fa fa-warning" style="color: #d43f3a"></span> ATENCIÓN. Está a punto de eliminar la marca: <b>{{$marca->mar_descripcion}}</b></h5></center><hr>
 
-                            <center><h5>¿Realmente desea eliminar este Tercero?</h5></center>
+                            <center><h5>¿Realmente desea eliminar esta marca?</h5></center>
                             
-                            {!!Form::open(['route'=> [$variable.'.destroy', $tercero], 'method'=>'DELETE'])!!}
+                            {!!Form::open(['route'=> [$variable.'.destroy', $marca], 'method'=>'DELETE'])!!}
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <center>
                                 <div class="form-group">
