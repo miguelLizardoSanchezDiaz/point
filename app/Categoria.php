@@ -10,6 +10,13 @@ class Categoria extends Model
     protected $table = "categoria";
     public $timestamps = false;
 
+    public static function consultaCodigo($codigo){
+        return static::select('*')
+        ->where('cat_codigo',$codigo)
+        ->where('cat_estado',1)
+        ->first();
+    }
+
     public static function getCategorias(){
         return static::select('*')
         ->where('cat_estado',1)

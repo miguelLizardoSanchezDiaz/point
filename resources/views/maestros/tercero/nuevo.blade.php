@@ -149,7 +149,7 @@
                                     <label for="exampleInputEmail1">UBIGEO</label>
                                     <select class="form-control select2bs4" style="width: 100%;" id="cbo_ubigeo" name="cbo_ubigeo" placeholder="Seleccione Ubigeo">
                                         @foreach($ubigeos as $ubigeo)
-                                            <option value="{{$ubigeo->id}}">{{$ubigeo->ubi_descripcion}}</option>
+                                            <option value="{{$ubigeo->id}}">{{$ubigeo->ubi_codigo}} | {{$ubigeo->ubi_descripcion}}</option>
                                         @endforeach
                                     </select>
                                 </div>

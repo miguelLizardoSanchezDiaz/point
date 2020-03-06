@@ -4,26 +4,26 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
-use App\Categoria;
+use App\Umedida;
 use Session;
 
-class CategoriaController extends Controller
+class UnidadMedidaController extends Controller
 {
-    protected $variable='categorias';
-    protected $permiso='4';
+    protected $variable='unidad-medida';
+    protected $permiso='8';
 
     public function index(){
         $variable=$this->variable;
         if(valida_privilegio($this->permiso)==0){return view('layouts.no_privilegio',compact('variable'));}
 
-    	$categorias=Categoria::getCategorias();
-    	return view('maestros.categorias.listado',compact('categorias','variable'));
+    	$unidades=Umedida::getListaIndex();
+    	return view('maestros.unidades.listado',compact('unidades','variable'));
     }
 
     public function create(){
     	$variable=$this->variable;
         if(valida_privilegio($this->permiso)==0){return view('layouts.no_privilegio',compact('variable'));}
-        return view('maestros.categorias.nuevo',compact('variable'));
+        return view('maestros.unidades.nuevo',compact('variable'));
     }
 
     public function store(Request $request)
@@ -31,28 +31,19 @@ class CategoriaController extends Controller
         $variable=$this->variable;
         if(valida_privilegio($this->permiso)==0){return view('layouts.no_privilegio',compact('variable'));}
 
-        $categoria=new Categoria;
-        $categoria->cat_codigo=$request->txt_codigo;
-        $categoria->cat_descripcion=$request->txt_descripcion;
-        $categoria->cat_estado=1;
+        $this->validate($request, 
+            ['txt_codigo'=>['required','max:11'], 
+            'txt_descripcion'=>['required','max:250']
+            ]);
 
-        $consulta=Categoria::consultaCodigo($request->txt_codigo);
-        if($consulta){
-            $r["estado"]="error";
-            $r["mensaje"]="Código ya se encuentra registrado, verifique!";
-        }
-        else{
-            if($categoria->save())
-            {
-                $r["estado"]="ok";
-                $r["mensaje"]="Grabado Correctamente";
-            }
-            else{
-                $r["estado"]="error";
-                $r["mensaje"]="Error al Grabar!";
-            }        
-        }
-        return $r;
+        $unidad=new Umedida;
+        $unidad->unm_codigo=$request->txt_codigo;
+        $unidad->unm_descripcion=$request->txt_descripcion;
+        $unidad->unm_estado=1;
+        $unidad->save();
+
+        Session::flash('flash_message', 'Registro guardado correctamente!');
+        return Redirect::to($this->variable);
     }
 
     public function edit($id)
@@ -60,8 +51,8 @@ class CategoriaController extends Controller
         $variable=$this->variable;
         if(valida_privilegio($this->permiso)==0){return view('layouts.no_privilegio',compact('variable'));}
 
-        $categoria=Categoria::findOrFail($id);
-        return view('maestros.categorias.edit', compact('variable','categoria'));
+        $unidad=Umedida::findOrFail($id);
+        return view('maestros.unidades.edit', compact('variable','unidad'));
     }
 
     public function update(Request $request, $id)
@@ -69,18 +60,13 @@ class CategoriaController extends Controller
         $variable=$this->variable;
         if(valida_privilegio($this->permiso)==0){return view('layouts.no_privilegio',compact('variable'));}
 
-        $categoria=Categoria::findOrFail($id);
-        $categoria->cat_descripcion=$request->txt_descripcion;
-        $categoria->cat_estado=1;
-        if($categoria->save())
-        {
-            $r["estado"]="ok";
-            $r["mensaje"]="Grabado Correctamente";
-        }
-        else{
-            $r["estado"]="error";
-            $r["mensaje"]="Error al Grabar!";
-        } 
+        $unidad=Umedida::findOrFail($id);
+        $unidad->unm_descripcion=$request->txt_descripcion;
+        $unidad->unm_estado=1;
+        $unidad->save();
+
+        Session::flash('flash_message', 'Registro editado correctamente!');
+        return Redirect::to($this->variable);
     }
 
     public function show($id)
@@ -88,8 +74,8 @@ class CategoriaController extends Controller
         $variable=$this->variable;
         if(valida_privilegio($this->permiso)==0){return view('layouts.no_privilegio',compact('variable'));}
 
-        $categoria=Categoria::findOrFail($id);
-        return view('maestros.categorias.eliminar', compact('variable','categoria'));
+        $unidad=Umedida::findOrFail($id);
+        return view('maestros.unidades.eliminar', compact('variable','unidad'));
     }
 
     public function destroy($id)
@@ -98,8 +84,8 @@ class CategoriaController extends Controller
         if(valida_privilegio($this->permiso)==0){return view('layouts.no_privilegio',compact('variable'));}
         
         try {
-            $categoria=Categoria::findOrFail($id);
-            Categoria::destroy($id);
+            $unidad=Umedida::findOrFail($id);
+            Umedida::destroy($id);
             Session::flash('flash_message', 'Registro eliminado correctamente!');
             return Redirect:: to($this->variable);
         }catch (\Illuminate\Database\QueryException $e){
