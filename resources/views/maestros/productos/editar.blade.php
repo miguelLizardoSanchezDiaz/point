@@ -17,7 +17,7 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="{{url('home')}}">Inicio</a></li>
-              <li class="breadcrumb-item active">Nuevo Producto</li>
+              <li class="breadcrumb-item active">Editar Producto</li>
             </ol>
           </div>
         </div>
@@ -31,7 +31,7 @@
           <div class="col-md-12">
             <div class="card card-info">
               <div class="card-header">
-                <h3 class="card-title">Nuevo Producto</h3>
+                <h3 class="card-title">Editar Producto</h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
@@ -54,18 +54,18 @@
 
                 <form id="frm_nuevo" name="frm_nuevo" class="col-sm-12 col-xs-12" method="POST" accept-charset="UTF-8" enctype="multipart/form-data">
                   <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                  
+                  <input type="hidden" name="txt_id_registro" id="txt_id_registro" value="{{$producto->id}}">
                   <div class="row">
                     <div class="col-sm-4">
                       <div class="form-group">
                         <label>Código</label>
-                        <input type="text" class="form-control" id="txt_codigo" name="txt_codigo" placeholder="Código" autocomplete="off">
+                        <input type="text" class="form-control" id="txt_codigo" name="txt_codigo" placeholder="Código" autocomplete="off" value="{{$producto->pro_codigo}}" readonly="">
                       </div>
                     </div>
                     <div class="col-sm-8">
                       <div class="form-group">
                         <label>Descripción</label>
-                        <input type="text" class="form-control" placeholder="Descripción" id="txt_descripcion" name="txt_descripcion" autocomplete="off">
+                        <input type="text" class="form-control" placeholder="Descripción" id="txt_descripcion" name="txt_descripcion" autocomplete="off" value="{{$producto->pro_descripcion}}">
                       </div>
                     </div>
                   </div>
@@ -78,7 +78,7 @@
                           <span class="input-group-btn">
                             <button class="btn btn-personalizado" type="button"><i class="fa fa-filter"></i></button>
                           </span>
-                          <input id="txt_categoria" type="text" class="form-control input-personalizado" name="txt_categoria" placeholder="Buscar por código o descripción">
+                          <input id="txt_categoria" type="text" class="form-control input-personalizado" name="txt_categoria" placeholder="Buscar por código o descripción" value="{{$producto->categoria['cat_codigo']}} | {{$producto->categoria['cat_descripcion']}}">
                           
                         </div>
                         <input type="hidden" id="txt_id_categoria" name="txt_id_categoria">

@@ -51,8 +51,6 @@ class ProductoController extends Controller
         $operacion='insertar';
 
         $producto=new Producto;
-        
-
         $producto->pro_codigo= $request->txt_codigo;
         $producto->pro_descripcion= $request->txt_descripcion;
         $producto->cat_id=validaFiltroAutocomplete($request->txt_id_categoria);
@@ -100,7 +98,7 @@ class ProductoController extends Controller
         $variable=$this->variable;
         if(valida_privilegio($this->permiso)==0){return view('layouts.no_privilegio',compact('variable'));}
 
-        $producto=Productos::findDetail($id);
+        $producto=Producto::findorfail($id);
 
         return view('maestros.productos.editar',compact('producto','variable'));
     }
