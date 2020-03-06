@@ -31,19 +31,28 @@ class CategoriaController extends Controller
         $variable=$this->variable;
         if(valida_privilegio($this->permiso)==0){return view('layouts.no_privilegio',compact('variable'));}
 
-        $this->validate($request, 
-            ['txt_codigo'=>['required','max:11'], 
-            'txt_descripcion'=>['required','max:250']
-            ]);
-
         $categoria=new Categoria;
         $categoria->cat_codigo=$request->txt_codigo;
         $categoria->cat_descripcion=$request->txt_descripcion;
         $categoria->cat_estado=1;
-        $categoria->save();
 
-        Session::flash('flash_message', 'Registro guardado correctamente!');
-        return Redirect::to($this->variable);
+        $consulta=Categoria::consultaCodigo($request->txt_codigo);
+        if($consulta){
+            $r["estado"]="error";
+            $r["mensaje"]="Código ya se encuentra registrado, verifique!";
+        }
+        else{
+            if($categoria->save())
+            {
+                $r["estado"]="ok";
+                $r["mensaje"]="Grabado Correctamente";
+            }
+            else{
+                $r["estado"]="error";
+                $r["mensaje"]="Error al Grabar!";
+            }        
+        }
+        return $r;
     }
 
     public function edit($id)
@@ -60,15 +69,18 @@ class CategoriaController extends Controller
         $variable=$this->variable;
         if(valida_privilegio($this->permiso)==0){return view('layouts.no_privilegio',compact('variable'));}
 
-        $tipoDocumento=$request->cbo_documento;
-
         $categoria=Categoria::findOrFail($id);
         $categoria->cat_descripcion=$request->txt_descripcion;
         $categoria->cat_estado=1;
-        $categoria->save();
-
-        Session::flash('flash_message', 'Registro editado correctamente!');
-        return Redirect::to($this->variable);
+        if($categoria->save())
+        {
+            $r["estado"]="ok";
+            $r["mensaje"]="Grabado Correctamente";
+        }
+        else{
+            $r["estado"]="error";
+            $r["mensaje"]="Error al Grabar!";
+        } 
     }
 
     public function show($id)
