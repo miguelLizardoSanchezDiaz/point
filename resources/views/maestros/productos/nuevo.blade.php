@@ -80,8 +80,9 @@
                             <button class="btn btn-personalizado" type="button"><i class="fa fa-filter"></i></button>
                           </span>
                           <input id="txt_categoria" type="text" class="form-control input-personalizado" name="txt_categoria" placeholder="Buscar por código o descripción">
-                          <input type="hidden" id="txt_id_categoria" name="txt_id_categoria">
+                          
                         </div>
+                        <input type="hidden" id="txt_id_categoria" name="txt_id_categoria">
 
                         </div>
                       </div>
@@ -125,8 +126,9 @@
                             <button class="btn btn-personalizado" type="button"><i class="fa fa-filter"></i></button>
                           </span>
                           <input type="text" class="form-control input-personalizado" name="txt_umedida" placeholder="Buscar por código o descripción" id="txt_umedida">
-                          <input type="hidden" id="txt_id_umedida" name="txt_id_umedida">
-                        </div>  
+                          
+                        </div>
+                        <input type="hidden" id="txt_id_umedida" name="txt_id_umedida">
                       </div>
                     </div>
 
@@ -138,8 +140,9 @@
                             <button class="btn btn-personalizado" type="button"><i class="fa fa-filter"></i></button>
                           </span>
                           <input type="text" class="form-control input-personalizado" name="txt_marca" placeholder="Buscar por código o descripción" id="txt_marca">
-                          <input type="hidden" id="txt_id_marca" name="txt_id_marca">
+                          
                         </div> 
+                        <input type="hidden" id="txt_id_marca" name="txt_id_marca">
                       </div>
                     </div>
 
@@ -151,8 +154,9 @@
                             <button class="btn btn-personalizado" type="button"><i class="fa fa-filter"></i></button>
                           </span>
                           <input type="text" class="form-control input-personalizado" name="txt_modelo" placeholder="Buscar por código o descripción" id="txt_modelo">
-                          <input type="hidden" id="txt_id_modelo" name="txt_id_modelo">
+                          
                         </div> 
+                        <input type="hidden" id="txt_id_modelo" name="txt_id_modelo">
                       </div>
                     </div>
                   </div>
@@ -200,6 +204,6 @@
 
 {!! Html::script('/dropzone/dropzone.js') !!}
 {!! Html::script('/twitter-bootstrap-wizard-master/jquery.bootstrap.wizard.js') !!}
-{!! Html::script('/js/productos.js') !!}
+{!! Html::script('/js/maestros/productos.js') !!}
 
 @endsection

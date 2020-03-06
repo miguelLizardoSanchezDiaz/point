@@ -9,8 +9,14 @@ class Producto extends Model
     protected $connection = 'medida';
     protected $table = "producto";
     public $timestamps = false;
-
-    public static function getListaIntranet($codigo,$cbo_categoria1,$cbo_categoria2,$cbo_categoria3,$marca,$cbo_web,$txt_descripcion){
+    
+    public static function getLista(){
+        return static::select('*')
+        ->where('pro_estado',1)
+        ->orderby('pro_descripcion','asc')
+        ->get();
+    }
+    /*public static function getListaIntranet($codigo,$cbo_categoria1,$cbo_categoria2,$cbo_categoria3,$marca,$cbo_web,$txt_descripcion){
         return Producto::filtroCategoria1($codigo,$cbo_categoria1,$cbo_categoria2,$cbo_categoria3,$marca,$txt_descripcion)
 
         //->filtroCategoria2($cbo_categoria2)
@@ -27,10 +33,10 @@ class Producto extends Model
 
         //->paginate(25);
         ->get();
-    }
+    }*/
 
 
-    public function scopeFiltroCategoria1($query,$codigo,$cbo_categoria1,$cbo_categoria2,$cbo_categoria3,$marca_id,$txt_descripcion){
+    /*public function scopeFiltroCategoria1($query,$codigo,$cbo_categoria1,$cbo_categoria2,$cbo_categoria3,$marca_id,$txt_descripcion){
         if(empty($marca_id) && $codigo=='' && empty($cbo_categoria1) && empty($cbo_categoria2) && empty($cbo_categoria3) && $txt_descripcion!=''){
             return $query->select('producto.*','m.mar_nombre')
             //->where('m.id',$marca_id)
@@ -272,5 +278,26 @@ class Producto extends Model
             //->where('producto.pro_descripcion','like','%'.$txt_descripcion.'%')
             ->join('categoria as c','c.id','=','producto.cat_id');
         }  
+    }*/
+
+    public function unidadmedida(){
+        return $this->belongsTo(Umedida::class,'unm_id');
     }
+    public function marca(){
+        return $this->belongsTo(Marca::class,'mar_id');
+    }
+    public function modelo(){
+        return $this->belongsTo(Marca::class,'mod_id');
+    }
+    public function categoria(){
+        return $this->belongsTo(Categoria::class,'cat_id');
+    }
+
+    public static function consultaCodigo($codigo){
+        return static::select('*')
+        ->where('pro_codigo',$codigo)
+        ->where('pro_estado',1)
+        ->first();
+    }
+
 }
