@@ -10,6 +10,13 @@ class Umedida extends Model
     protected $table = "unidad_medida";
     public $timestamps = false;
 
+    public static function consultaCodigo($codigo){
+        return static::select('*')
+        ->where('unm_codigo',$codigo)
+        ->where('unm_estado',1)
+        ->first();
+    }
+
     public static function getListaIndex(){
         return static::select('*')
         ->where('unm_estado',1)

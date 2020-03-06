@@ -41,9 +41,10 @@
                         @include('errors.errores')
                     </div>
 
-                    {!!Form::model($modelo, ['route'=> ['modelos.update', $modelo ], 'method'=>'PUT', 'class'=>'col-sm-12 col-xs-12','files' => true])!!}
+                    <form id="frm_nuevo" name="frm_nuevo" class="col-sm-12 col-xs-12" accept-charset="UTF-8" enctype="multipart/form-data">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <fieldset>
+                        <input type="hidden" id="txt_id_registro" name="txt_id_registro" autocomplete="off" value="{{$modelo->id}}">
                         <div class="row">
                             <div class="col-sm-4 col-xs-12">
                                 <div class="form-group">
@@ -74,7 +75,7 @@
                         <div class="form-group">
                             <label>(*) Campos Obligatorios</label>
                         </div>
-                        <button type="submit" id="btn_guardar" class="btn btn-sm btn-primary m-r-5"><span class="glyphicon glyphicon-save"></span> Registrar</button>
+                        <button type="button" id="btn_guardar2" class="btn btn-sm btn-primary m-r-5"><span class="glyphicon glyphicon-save"></span> Registrar</button>
                         <a href="{{url($variable)}}" class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-remove"></span> Cancelar</a>
                         </fieldset>
                     </form>

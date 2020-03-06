@@ -40,10 +40,24 @@ class UnidadMedidaController extends Controller
         $unidad->unm_codigo=$request->txt_codigo;
         $unidad->unm_descripcion=$request->txt_descripcion;
         $unidad->unm_estado=1;
-        $unidad->save();
-
-        Session::flash('flash_message', 'Registro guardado correctamente!');
-        return Redirect::to($this->variable);
+        
+        $consulta=Umedida::consultaCodigo($request->txt_codigo);
+        if($consulta){
+            $r["estado"]="error";
+            $r["mensaje"]="Código ya se encuentra registrado, verifique!";
+        }
+        else{
+            if($unidad->save())
+            {
+                $r["estado"]="ok";
+                $r["mensaje"]="Grabado Correctamente";
+            }
+            else{
+                $r["estado"]="error";
+                $r["mensaje"]="Error al Grabar!";
+            }        
+        }
+        return $r;
     }
 
     public function edit($id)
@@ -63,10 +77,16 @@ class UnidadMedidaController extends Controller
         $unidad=Umedida::findOrFail($id);
         $unidad->unm_descripcion=$request->txt_descripcion;
         $unidad->unm_estado=1;
-        $unidad->save();
-
-        Session::flash('flash_message', 'Registro editado correctamente!');
-        return Redirect::to($this->variable);
+        if($unidad->save())
+        {
+            $r["estado"]="ok";
+            $r["mensaje"]="Grabado Correctamente";
+        }
+        else{
+            $r["estado"]="error";
+            $r["mensaje"]="Error al Grabar!";
+        }
+        return $r;
     }
 
     public function show($id)

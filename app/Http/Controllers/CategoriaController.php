@@ -80,7 +80,8 @@ class CategoriaController extends Controller
         else{
             $r["estado"]="error";
             $r["mensaje"]="Error al Grabar!";
-        } 
+        }
+        return $r;
     }
 
     public function show($id)

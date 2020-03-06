@@ -39,13 +39,13 @@ function procesar_registro(){
     var frmNuevo=$("#frm_nuevo");
     $.ajax({
         type:"POST",
-        url:ip+"/categorias",
+        url:ip+"/unidad-medida",
         dataType:"JSON",
         data:frmNuevo.serialize(),
         success:function(data){
             if(data.estado=="ok"){
                 mensaje_success(data.mensaje);
-                window.location.href=ip+"/"+"categorias";
+                window.location.href=ip+"/"+"unidad-medida";
             }
             else{
                 mensaje_danger(data.mensaje);
@@ -65,13 +65,13 @@ function procesar_registro_editar(){
     var id = $("#txt_id_registro").val();
     $.ajax({
         type:"PUT",
-        url:ip+"/categorias/"+id,
+        url:ip+"/unidad-medida/"+id,
         dataType:"JSON",
         data:frmNuevo.serialize(),
         success:function(data){
             if(data.estado=="ok"){
                 mensaje_success(data.mensaje);
-                window.location.href=ip+"/"+"categorias";
+                window.location.href=ip+"/unidad-medida";
             }
             else{
                 mensaje_danger(data.mensaje);

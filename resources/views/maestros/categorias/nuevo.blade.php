@@ -41,7 +41,7 @@
                         @include('errors.errores')
                     </div>
 
-                    <form id="frm_nuevo" name="frm_nuevo" class="col-sm-12 col-xs-12" method="POST" action="{{url($variable)}}" accept-charset="UTF-8" enctype="multipart/form-data">
+                    <form id="frm_nuevo" name="frm_nuevo" class="col-sm-12 col-xs-12" accept-charset="UTF-8" enctype="multipart/form-data">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <fieldset>
                         <div class="row">
