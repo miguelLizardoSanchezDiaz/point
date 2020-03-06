@@ -13,3 +13,7 @@
   {!! Html::style('/js/typeahead/typeahead.bundle.css') !!}
 
   {!! Html::style('/css/mi_estilo.css') !!}
+
+  {!! Html::style('pnotify/dist/pnotify.css') !!}
+  {!! Html::style('pnotify/dist/pnotify.buttons.css') !!}
+  {!! Html::style('pnotify/dist/pnotify.nonblock.css') !!}

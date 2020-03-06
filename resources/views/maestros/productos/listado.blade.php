@@ -116,8 +116,8 @@
                                             <input type="checkbox" data-render="switchery" data-theme="default" onchange="activa_btn({{$producto->id}})" />
                                             @endif
                                         </td>
-                                        <td data-title="Editar" align="center"><a href="{{route($variable.'.edit',$producto->id)}}" class="btn btn-xs btn-primary"><span class="glyphicon glyphicon-edit"></span></a></td>
-                                        <td data-title="Eliminar" align="center"><a href="{{route($variable.'.show',$producto->id)}}" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-trash"></span></a></td>
+                                        <td data-title="Editar" align="center"><a href="{{route($variable.'.edit',$producto->id)}}" class="btn btn-xs btn-primary"><span class="fa fa-edit"></span></a></td>
+                                        <td data-title="Eliminar" align="center"><a href="{{route($variable.'.show',$producto->id)}}" class="btn btn-xs btn-danger"><span class="fa fa-trash"></span></a></td>
                                         
                                     </tr>
                                     @endforeach

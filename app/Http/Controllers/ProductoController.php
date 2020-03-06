@@ -52,14 +52,42 @@ class ProductoController extends Controller
     {
         $variable=$this->variable;
         if(valida_privilegio($this->permiso)==0){return view('layouts.no_privilegio',compact('variable'));}
+        
+        $operacion='insertar';
 
-        $this->validate($request, 
-            [
-                'txt_codigo'=>['required','max:11'],
-            ]);
+        $producto=new Producto;
+        $producto->pro_codigo= $request->txt_codigo;
+        $producto->pro_descripcion= $request->txt_descripcion;
+        $producto->cat_id=validaFiltroAutocomplete($request->txt_id_categoria);
+        $producto->pro_tipo_producto= $request->cbo_tipo_producto;
+        $producto->pro_precio= $request->txt_precio_venta;
+        $producto->pro_peso= $request->txt_precio;
+        $producto->pro_volumen= $request->txt_volumen;
+        $producto->unm_id= validaFiltroAutocomplete($request->txt_id_umedida);
+        $producto->mar_id= validaFiltroAutocomplete($request->txt_id_marca);
+        $producto->mod_id= validaFiltroAutocomplete($request->txt_id_modelo);
+        $producto->pro_caracteristicas= $request->txt_caracteristicas;
+        $producto->pro_estado=1;
+        $producto->pro_usuario=obtener_usuario();
+        switch ($operacion) {
+            case "insertar":
+                if($producto->save())
+                {
+                    $r["estado"]="ok";
+                    $r["mensaje"]="Grabado Correctamente";
+                }
+                else{
+                    $r["estado"]="error";
+                    $r["mensaje"]="Error al Grabar!";
+                }
+                break;
 
-        Session::flash('flash_message', 'Registro guardado correctamente!');
-        return Redirect::to($this->variable);
+            default:
+                $r["estado"]="error";
+                $r["mensaje"] = "Datos no válidos";
+                break;
+        }
+        return $r;
     }
 
 }

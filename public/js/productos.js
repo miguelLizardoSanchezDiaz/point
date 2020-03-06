@@ -3,9 +3,9 @@ $(document).ready(function() {
     $("#frm_nuevo").validate({
         ignore: "input[type='text']:hidden",
         rules: {
-            /*txt_nombre:{
+            txt_codigo:{
                 required:true
-            },*/
+            },
             
             txt_id_categoria:{
                 required:true,
@@ -32,6 +32,7 @@ $(document).ready(function() {
             },
         },
         messages: {
+            txt_codigo: "Ingrese código",
             txt_id_categoria: "Filtre Categoría",
             txt_codigo: "Ingrese un código",
             txt_nombre: "Ingrese un código",
@@ -42,73 +43,18 @@ $(document).ready(function() {
         }
 
     });
-    var proceso=$("#proceso").val();
-    if(proceso=='crea'){
-    	$('#rootwizard').bootstrapWizard({
-            tabClass: 'nav nav-pills',
-            onNext: function(tab, navigation, index) {
-                //console.log(tab+' '+navigation+' '+index);
-                //alert('next');
-                if($("#frm_nuevo").valid()){
-                    procesar_guardar();
-                }
-                else{
-                    mensaje_danger("Datos inválidos, revisar datos obligatorios");
-                    return false;
-                }
-            },
-            onTabClick: function(tab, navigation, index) {
-                //console.log(tab+' '+navigation+' '+index);
-                if($("#frm_nuevo").valid()){
-                    procesar_guardar();
-                }
-                else{
-                    mensaje_danger("Datos inválidos, revisar datos obligatorios");
-                    return false;
-                }
-            },
-            onTabShow: function(tab, navigation, index) {
-                var $total = navigation.find('li').length;
-                var $current = index+1;
-                var $percent = ($current/$total) * 100;
-                $('#rootwizard .progress-bar').css({width:$percent+'%'});
-            },
 
-        });
-    }
-    if(proceso=='edita'){
-        $('#rootwizard').bootstrapWizard({
-            tabClass: 'nav nav-pills',
-            onNext: function(tab, navigation, index) {
-                //console.log(tab+' '+navigation+' '+index);
-                //alert('next');
-                if($("#frm_nuevo").valid()){
-                    procesar_editar();
-                }
-                else{
-                    mensaje_danger("Datos inválidos, revisar datos obligatorios");
-                    return false;
-                }
-            },
-            onTabClick: function(tab, navigation, index) {
-                //console.log(tab+' '+navigation+' '+index);
-                if($("#frm_nuevo").valid()){
-                    procesar_editar();
-                }
-                else{
-                    mensaje_danger("Datos inválidos, revisar datos obligatorios");
-                    return false;
-                }
-            },
-            onTabShow: function(tab, navigation, index) {
-                var $total = navigation.find('li').length;
-                var $current = index+1;
-                var $percent = ($current/$total) * 100;
-                $('#rootwizard .progress-bar').css({width:$percent+'%'});
-            },
 
-        });
-    }
+    $('#btn_grabar').click(function() {
+        if($("#frm_nuevo").valid()){
+            procesar_registro();
+        }
+        else{
+            mensaje_danger('Datos no válidos, verifique campos obligatorios.');
+        }
+    });
+
+
 });
 
 
@@ -251,3 +197,31 @@ $('#txt_modelo').typeahead({
     }).on('typeahead:selected', function (even,datum) {
     $("#txt_id_modelo").val(bondObjs[datum.id]);
 });
+
+
+function procesar_registro(){  
+    var frmNuevo=$("#frm_nuevo");
+    $.ajax({
+        type:"POST",
+        url:ip+"/producto",
+        dataType:"JSON",
+        data:frmNuevo.serialize()+"&tipo=insertar",
+        success:function(data){
+            if(data.estado=="ok"){
+                mensaje_success(data.mensaje);
+                window.location.href=ip+"/"+"producto";
+            }
+            else{
+                mensaje_danger(data.mensaje);
+            }            
+        },
+        beforeSend:function(){
+            abre_loading();
+            //$("#btn_grabar").prop('disabled', true);
+        },
+        complete:function(){
+            cierra_loading();
+            //$("#btn_grabar").prop('disabled', true);
+        }
+    });
+}
