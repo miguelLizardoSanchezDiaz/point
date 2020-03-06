@@ -6,40 +6,39 @@ $(document).ready(function() {
             txt_codigo:{
                 required:true
             },
-            
+            txt_descripcion:{
+                required:true
+            },
             txt_id_categoria:{
                 required:true,
                 min:1,
                 number:true
             },
-            txt_codigo:{
+            txt_id_umedida:{
                 required:true,
+                min:1,
+                number:true
             },
-            txt_nombre:{
+            txt_id_marca:{
                 required:true,
+                min:1,
+                number:true
             },
-            txt_stock_min:{
+            txt_id_modelo:{
                 required:true,
+                min:1,
+                number:true
             },
-            txt_stock_max:{
-                required:true,
-            },
-            txt_precio_antes:{
-                required:true,
-            },
-            txt_porc_dcto:{
-                required:true,
-            },
+            
         },
         messages: {
             txt_codigo: "Ingrese código",
+            txt_descripcion: "Ingrese Descripción",
             txt_id_categoria: "Filtre Categoría",
-            txt_codigo: "Ingrese un código",
-            txt_nombre: "Ingrese un código",
-            txt_stock_min: "Ingrese un código",
-            txt_stock_max: "Ingrese un código",
-            txt_precio_antes: "Ingrese un código",
-            txt_porc_dcto: "Ingrese un código",
+            txt_id_umedida: "Filtre Unidad de Medida",
+            txt_id_marca: "Filtre Marca",
+            txt_id_modelo: "Filtre Modelo",
+            
         }
 
     });
@@ -54,6 +53,10 @@ $(document).ready(function() {
         }
     });
 
+    $("#txt_categoria").change(function(){limpia_filtro('txt_categoria','txt_id_categoria');});
+    $("#txt_umedida").change(function(){limpia_filtro('txt_umedida','txt_id_umedida');});
+    $("#txt_marca").change(function(){limpia_filtro('txt_marca','txt_id_marca');});
+    $("#txt_modelo").change(function(){limpia_filtro('txt_modelo','txt_id_modelo');});
 
 });
 
@@ -217,11 +220,9 @@ function procesar_registro(){
         },
         beforeSend:function(){
             abre_loading();
-            //$("#btn_grabar").prop('disabled', true);
         },
         complete:function(){
             cierra_loading();
-            //$("#btn_grabar").prop('disabled', true);
         }
     });
 }

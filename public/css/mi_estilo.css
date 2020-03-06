@@ -201,3 +201,6 @@ span.form-control-feedback.left.top-label{
   max-height: 150px;
   overflow-y: auto;
 }
+.error{
+  color: red;
+}

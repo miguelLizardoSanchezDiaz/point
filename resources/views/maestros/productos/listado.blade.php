@@ -94,10 +94,10 @@
                                 <thead>
                                     <tr>
                                         <th>Código</th>
-                                        <th>Marca</th>
                                         <th>Descripción</th>
+                                        <th>Marca</th>
                                         <th>Categoría</th>
-                                        <th>Mostrar en web</th>
+                                        
                                         <th>Editar</th>
                                         <th>Eliminar</th>                                        
                                     </tr>
@@ -106,18 +106,13 @@
                                     @foreach($productos as $producto)
                                     <tr class="">
                                         <td data-title="Código">{{$producto->pro_codigo}}</td>
-                                        <td data-title="Marca">{{$producto->mar_nombre}}</td>
+                                        
                                         <td data-title="Descripción">{{$producto->pro_descripcion}}</td>
+                                        <td data-title="Marca">{{$producto->marca['mar_descripcion']}}</td>
                                         <td data-title="Categoría">{{$producto->categoria['cat_descripcion']}}</td>
-                                        <td>
-                                            @if($producto->pro_web==1)
-                                            <input type="checkbox" data-render="switchery" data-theme="default" checked onchange="activa_btn({{$producto->id}})" />
-                                            @else
-                                            <input type="checkbox" data-render="switchery" data-theme="default" onchange="activa_btn({{$producto->id}})" />
-                                            @endif
-                                        </td>
-                                        <td data-title="Editar" align="center"><a href="{{route($variable.'.edit',$producto->id)}}" class="btn btn-xs btn-primary"><span class="fa fa-edit"></span></a></td>
-                                        <td data-title="Eliminar" align="center"><a href="{{route($variable.'.show',$producto->id)}}" class="btn btn-xs btn-danger"><span class="fa fa-trash"></span></a></td>
+                                        
+                                        <td data-title="Editar" align="center"><a href="{{route($variable.'.edit',$producto->id)}}" class="btn btn-xs btn-primary"><span class="fas fa-edit"></span></a></td>
+                                        <td data-title="Eliminar" align="center"><a href="{{route($variable.'.show',$producto->id)}}" class="btn btn-xs btn-danger"><span class="fas fa-trash-alt"></span></a></td>
                                         
                                     </tr>
                                     @endforeach

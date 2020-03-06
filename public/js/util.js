@@ -31,7 +31,7 @@ function abre_loading(mensaje) {
          
     //si no enviamos mensaje se pondra este por defecto
     //var mensaje="Su solicitud está siendo procesada"/*linea agregada, en caso se envie el parametro mensaje borrar esta linea*/
-    if (mensaje === undefined) mensaje = "Su solicitud está siendo procesada<br>Espere por favor";
+    if (mensaje === undefined) mensaje = "Su solicitud está siendo procesada";
          
     //centrar imagen gif
     height = 350;//El div del titulo, para que se vea mas arriba (H)
@@ -75,4 +75,10 @@ function abre_loading(mensaje) {
 
 function cierra_loading(){
     $("#WindowLoad").remove();
+}
+
+function limpia_filtro(input,inputid){
+    if($('#'+input+'').val()==''){
+        $('#'+inputid+'').val('');
+    }
 }

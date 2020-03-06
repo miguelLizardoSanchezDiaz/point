@@ -17,25 +17,20 @@ class ProductoController extends Controller
     protected $permiso='5';
 
     public function index(Request $request){
+        $variable=$this->variable;
+        if(valida_privilegio($this->permiso)==0){return view('layouts.no_privilegio',compact('variable'));}
+
         $tipoproceso='listar';
         /*Desarrollado por Miguel Sánchez 04/12/2018
         Revisado por LIZARDO*/
         $txt_codigo=$request->txt_codigo;
-    	$cbo_categoria1=$request->cbo_categoria1;
-		$cbo_categoria2=$request->cbo_categoria2;
-		$cbo_categoria3=$request->cbo_categoria3;
         $cbo_marca=$request->cbo_marca;
-        $cbo_web=$request->cbo_web;
         $txt_descripcion=$request->txt_descripcion;
-
-        //$categorias=Categoria::getCategoriasPrincipales();
         $marcas=Marca::getListaIndex();
-        $variable=$this->variable;
-        if(valida_privilegio($this->permiso)==0){return view('layouts.no_privilegio',compact('variable'));}
 
-    	$productos=Producto::getListaIntranet($txt_codigo,$cbo_categoria1,$cbo_categoria2,$cbo_categoria3,$cbo_marca,$cbo_web,$txt_descripcion);
+    	$productos=Producto::getLista($txt_codigo,$cbo_marca,$txt_descripcion);
     	
-    	return view('maestros.productos.listado',compact('productos','variable','tipoproceso','cbo_categoria1','cbo_categoria2','cbo_categoria3','txt_codigo','marcas','cbo_marca','cbo_web','txt_descripcion'));
+    	return view('maestros.productos.listado',compact('productos','variable','tipoproceso','txt_codigo','cbo_marca','txt_descripcion','marcas'));
     }
 
     public function create()
@@ -56,6 +51,8 @@ class ProductoController extends Controller
         $operacion='insertar';
 
         $producto=new Producto;
+        
+
         $producto->pro_codigo= $request->txt_codigo;
         $producto->pro_descripcion= $request->txt_descripcion;
         $producto->cat_id=validaFiltroAutocomplete($request->txt_id_categoria);
@@ -69,25 +66,43 @@ class ProductoController extends Controller
         $producto->pro_caracteristicas= $request->txt_caracteristicas;
         $producto->pro_estado=1;
         $producto->pro_usuario=obtener_usuario();
-        switch ($operacion) {
-            case "insertar":
-                if($producto->save())
-                {
-                    $r["estado"]="ok";
-                    $r["mensaje"]="Grabado Correctamente";
-                }
-                else{
-                    $r["estado"]="error";
-                    $r["mensaje"]="Error al Grabar!";
-                }
-                break;
 
-            default:
-                $r["estado"]="error";
-                $r["mensaje"] = "Datos no válidos";
-                break;
+        $consulta=Producto::consultaCodigo($request->txt_codigo);
+        if($consulta){
+            $r["estado"]="error";
+            $r["mensaje"]="Código ya se encuentra registrado, verifique!";
+        }
+        else{
+            switch ($operacion) {
+                case "insertar":
+                    if($producto->save())
+                    {
+                        $r["estado"]="ok";
+                        $r["mensaje"]="Grabado Correctamente";
+                    }
+                    else{
+                        $r["estado"]="error";
+                        $r["mensaje"]="Error al Grabar!";
+                    }
+                    break;
+
+                default:
+                    $r["estado"]="error";
+                    $r["mensaje"] = "Datos no válidos";
+                    break;
+            }
         }
         return $r;
+    }
+
+    public function edit($id)
+    {
+        $variable=$this->variable;
+        if(valida_privilegio($this->permiso)==0){return view('layouts.no_privilegio',compact('variable'));}
+
+        $producto=Productos::findDetail($id);
+
+        return view('maestros.productos.editar',compact('producto','variable'));
     }
 
 }
