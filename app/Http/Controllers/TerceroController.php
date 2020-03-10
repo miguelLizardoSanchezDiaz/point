@@ -44,32 +44,12 @@ class TerceroController extends Controller
 
         $tipoDocumento=$request->cbo_documento;
 
-        if($tipoDocumento==1){
-            $this->validate($request, 
-            ['txt_codigo'=>['required','max:11'], 
-            'txt_razonsocial'=>['required','max:250'],
-            'txt_nombreComercial'=>['required','max:250'],
-            'txt_direccion'=>['required','max:250']
-            ]);
-        }
-        else{
-            $this->validate($request, 
-            ['txt_codigo'=>['required','max:11'],
-            'txt_nombre'=>['required','max:250'],
-            'txt_apellidopaterno'=>['required','max:250'],
-            'txt_apellidomaterno'=>['required','max:250'],
-            'txt_nacimiento'=>['required'],
-            'txt_direccion'=>['required','max:250']
-            ]);
-        }
-
         $tercero=new Tercero;
         $tercero->ter_codigo=$request->txt_codigo;
         if($tipoDocumento==1){
             $tercero->ter_descripcion=strtoupper($request->txt_razonsocial);
             $tercero->ter_nombre_comercial=strtoupper($request->txt_nombreComercial);
             $tercero->ter_ruc=$request->txt_codigo;
-            $tercero->ter_web=$request->txt_web;
         }
         else{
             $tercero->ter_fecha_nacimiento=fecha_a_ingles($request->txt_nacimiento);
@@ -78,6 +58,7 @@ class TerceroController extends Controller
             $tercero->ter_nombres=strtoupper($request->txt_nombre);
             $tercero->ter_dni=$request->txt_codigo;
         }
+        $tercero->ter_web=$request->txt_web;
         $tercero->ter_telefono1=$request->txt_telefono;
         $tercero->ter_direccion=$request->txt_direccion;
         $tercero->ter_email=$request->txt_mail;
@@ -85,10 +66,23 @@ class TerceroController extends Controller
         $tercero->ubi_id=$request->cbo_ubigeo;
         $tercero->tit_id=$request->cbo_tipo;
         $tercero->ter_estado=1;
-        $tercero->save();
-
-        Session::flash('flash_message', 'Registro guardado correctamente!');
-        return Redirect::to($this->variable);
+        $consulta=Tercero::consultaCodigo($request->txt_codigo);
+        if($consulta){
+            $r["estado"]="error";
+            $r["mensaje"]="Código ya se encuentra registrado, verifique!";
+        }
+        else{
+            if($tercero->save())
+            {
+                $r["estado"]="ok";
+                $r["mensaje"]="Grabado Correctamente";
+            }
+            else{
+                $r["estado"]="error";
+                $r["mensaje"]="Error al Grabar!";
+            }        
+        }
+        return $r;
     }
 
     public function edit($id)
@@ -116,7 +110,6 @@ class TerceroController extends Controller
             $tercero->ter_descripcion=strtoupper($request->txt_razonsocial);
             $tercero->ter_nombre_comercial=strtoupper($request->txt_nombreComercial);
             $tercero->ter_ruc=$request->txt_codigo;
-            $tercero->ter_web=$request->txt_web;
         }
         else{
             $tercero->ter_fecha_nacimiento=fecha_a_ingles($request->txt_nacimiento);
@@ -125,6 +118,7 @@ class TerceroController extends Controller
             $tercero->ter_nombres=strtoupper($request->txt_nombre);
             $tercero->ter_dni=$request->txt_codigo;
         }
+        $tercero->ter_web=$request->txt_web;
         $tercero->ter_telefono1=$request->txt_telefono;
         $tercero->ter_direccion=$request->txt_direccion;
         $tercero->ter_email=$request->txt_mail;
@@ -132,10 +126,16 @@ class TerceroController extends Controller
         $tercero->ubi_id=$request->cbo_ubigeo;
         $tercero->tit_id=$request->cbo_tipo;
         $tercero->ter_estado=1;
-        $tercero->save();
-
-        Session::flash('flash_message', 'Registro editado correctamente!');
-        return Redirect::to($this->variable);
+        if($tercero->save())
+        {
+            $r["estado"]="ok";
+            $r["mensaje"]="Grabado Correctamente";
+        }
+        else{
+            $r["estado"]="error";
+            $r["mensaje"]="Error al Grabar!";
+        }
+        return $r;
     }
 
     public function show($id)
