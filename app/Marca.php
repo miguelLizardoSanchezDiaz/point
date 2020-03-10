@@ -10,6 +10,13 @@ class Marca extends Model
     protected $table = "marca";
     public $timestamps = false;
 
+    public static function consultaCodigo($codigo){
+        return static::select('*')
+        ->where('mar_codigo',$codigo)
+        ->where('mar_estado',1)
+        ->first();
+    }
+
     public static function getListaIndex(){
     	return static::select('*')
     	->where('mar_estado',1)

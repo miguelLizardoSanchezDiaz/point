@@ -41,7 +41,7 @@
                         @include('errors.errores')
                     </div>
 
-                    <form id="frm_tercero" class="col-sm-12 col-xs-12" method="POST" action="{{url($variable)}}" accept-charset="UTF-8" enctype="multipart/form-data">
+                    <form id="frm_nuevo" name="frm_nuevo" class="col-sm-12 col-xs-12" accept-charset="UTF-8" enctype="multipart/form-data">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <fieldset>
                         <div class="row">
@@ -73,7 +73,7 @@
                         <div class="form-group">
                             <label>(*) Campos Obligatorios</label>
                         </div>
-                        <button type="submit" id="btn_guardar" class="btn btn-sm btn-primary m-r-5"><span class="glyphicon glyphicon-save"></span> Registrar</button>
+                        <button type="button" id="btn_grabar" class="btn btn-sm btn-primary m-r-5"><span class="glyphicon glyphicon-save"></span> Registrar</button>
                         <a href="{{url($variable)}}" class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-remove"></span> Cancelar</a>
                         </fieldset>
                     </form>

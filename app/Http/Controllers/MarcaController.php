@@ -31,19 +31,27 @@ class MarcaController extends Controller
         $variable=$this->variable;
         if(valida_privilegio($this->permiso)==0){return view('layouts.no_privilegio',compact('variable'));}
 
-        $this->validate($request, 
-            ['txt_codigo'=>['required','max:11'], 
-            'txt_descripcion'=>['required','max:250']
-            ]);
-
         $marca=new Marca;
         $marca->mar_codigo=$request->txt_codigo;
         $marca->mar_descripcion=$request->txt_descripcion;
         $marca->mar_estado=1;
-        $marca->save();
-
-        Session::flash('flash_message', 'Registro guardado correctamente!');
-        return Redirect::to($this->variable);
+        $consulta=Marca::consultaCodigo($request->txt_codigo);
+        if($consulta){
+            $r["estado"]="error";
+            $r["mensaje"]="Código ya se encuentra registrado, verifique!";
+        }
+        else{
+            if($marca->save())
+            {
+                $r["estado"]="ok";
+                $r["mensaje"]="Grabado Correctamente";
+            }
+            else{
+                $r["estado"]="error";
+                $r["mensaje"]="Error al Grabar!";
+            }        
+        }
+        return $r;
     }
 
     public function edit($id)
@@ -63,10 +71,16 @@ class MarcaController extends Controller
         $marca=Marca::findOrFail($id);
         $marca->mar_descripcion=$request->txt_descripcion;
         $marca->mar_estado=1;
-        $marca->save();
-
-        Session::flash('flash_message', 'Registro editado correctamente!');
-        return Redirect::to($this->variable);
+        if($marca->save())
+        {
+            $r["estado"]="ok";
+            $r["mensaje"]="Grabado Correctamente";
+        }
+        else{
+            $r["estado"]="error";
+            $r["mensaje"]="Error al Grabar!";
+        }
+        return $r;
     }
 
     public function show($id)
