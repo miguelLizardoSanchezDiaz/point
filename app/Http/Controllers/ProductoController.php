@@ -48,7 +48,7 @@ class ProductoController extends Controller
         $variable=$this->variable;
         if(valida_privilegio($this->permiso)==0){return view('layouts.no_privilegio',compact('variable'));}
         
-        $operacion='insertar';
+        $operacion=$request->tipo;
 
         $producto=new Producto;
         $producto->pro_codigo= $request->txt_codigo;
@@ -56,7 +56,7 @@ class ProductoController extends Controller
         $producto->cat_id=validaFiltroAutocomplete($request->txt_id_categoria);
         $producto->pro_tipo_producto= $request->cbo_tipo_producto;
         $producto->pro_precio= $request->txt_precio_venta;
-        $producto->pro_peso= $request->txt_precio;
+        $producto->pro_peso= $request->txt_peso;
         $producto->pro_volumen= $request->txt_volumen;
         $producto->unm_id= validaFiltroAutocomplete($request->txt_id_umedida);
         $producto->mar_id= validaFiltroAutocomplete($request->txt_id_marca);
@@ -101,6 +101,70 @@ class ProductoController extends Controller
         $producto=Producto::findorfail($id);
 
         return view('maestros.productos.editar',compact('producto','variable'));
+    }
+    public function update(Request $request, $id)
+    {
+        $variable=$this->variable;
+        if(valida_privilegio($this->permiso)==0){return view('layouts.no_privilegio',compact('variable'));}
+        
+        $operacion=$request->tipo;
+
+        $producto=Producto::findorfail($id);
+        //$producto->pro_codigo= $request->txt_codigo;
+        $producto->pro_descripcion= $request->txt_descripcion;
+        $producto->cat_id=validaFiltroAutocomplete($request->txt_id_categoria);
+        $producto->pro_tipo_producto= $request->cbo_tipo_producto;
+        $producto->pro_precio= $request->txt_precio_venta;
+        $producto->pro_peso= $request->txt_peso;
+        $producto->pro_volumen= $request->txt_volumen;
+        $producto->unm_id= validaFiltroAutocomplete($request->txt_id_umedida);
+        $producto->mar_id= validaFiltroAutocomplete($request->txt_id_marca);
+        $producto->mod_id= validaFiltroAutocomplete($request->txt_id_modelo);
+        $producto->pro_caracteristicas= $request->txt_caracteristicas;
+        //$producto->pro_estado=1;
+        $producto->pro_usuario=obtener_usuario();
+
+        switch ($operacion) {
+            case "editar":
+                if($producto->save())
+                {
+                    $r["estado"]="ok";
+                    $r["mensaje"]="Registrado Correctamente";
+                }
+                else{
+                    $r["estado"]="error";
+                    $r["mensaje"]="Error al Grabar!";
+                }
+                break;
+
+            default:
+                $r["estado"]="error";
+                $r["mensaje"] = "Datos no válidos";
+                break;
+        }
+        
+        return $r;
+    }
+
+    public function show($id){
+        $variable=$this->variable;
+        if(valida_privilegio($this->permiso)==0){return view('layouts.no_privilegio',compact('variable'));}
+
+        $producto=Producto::findOrFail($id);
+
+        return view('maestros.productos.eliminar', compact('producto','variable'));
+    }
+
+    public function destroy($id)
+    {
+        try {
+            Producto::destroy($id);
+            Session::flash('flash_message', 'Registro eliminado correctamente!');
+            return Redirect:: to($this->variable);
+        }catch (\Illuminate\Database\QueryException $e){
+            Session::flash('flash_error', "Acción no válida. El registro ya está relacionado con otras tablas del sistema.");
+            return Redirect:: to($this->variable);
+        }
     }
 
 }

@@ -7,6 +7,7 @@ use Request;
 use App\Categoria;
 use App\Umedida;
 use App\Marca;
+use App\Modelo;
 
 class AutocompleteController extends Controller
 {
@@ -26,6 +27,10 @@ class AutocompleteController extends Controller
         $term=Request::get('query');
         return Marca::findByCodigoOrDescription($term);
     }
-
+    public function BuscarModelo()
+    {
+        $term=Request::get('query');
+        return Modelo::findByCodigoOrDescription($term);
+    }
 
 }

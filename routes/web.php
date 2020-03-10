@@ -63,6 +63,7 @@ Route::group(['middleware'=>'auth'],function()
         Route::get('/filtrarCategoria','AutocompleteController@BuscarCategoria');
         Route::get('/filtrarUnidadMedida','AutocompleteController@BuscarUmedida');
         Route::get('/filtrarMarca','AutocompleteController@BuscarMarca');
+        Route::get('/filtrarModelo','AutocompleteController@BuscarModelo');
     });
 
     

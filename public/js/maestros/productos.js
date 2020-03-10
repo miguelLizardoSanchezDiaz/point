@@ -19,7 +19,7 @@ $(document).ready(function() {
                 min:1,
                 number:true
             },
-            txt_id_marca:{
+            /*txt_id_marca:{
                 required:true,
                 min:1,
                 number:true
@@ -28,7 +28,7 @@ $(document).ready(function() {
                 required:true,
                 min:1,
                 number:true
-            },
+            },*/
             
         },
         messages: {
@@ -36,8 +36,8 @@ $(document).ready(function() {
             txt_descripcion: "Ingrese Descripción",
             txt_id_categoria: "Filtre Categoría",
             txt_id_umedida: "Filtre Unidad de Medida",
-            txt_id_marca: "Filtre Marca",
-            txt_id_modelo: "Filtre Modelo",
+            //txt_id_marca: "Filtre Marca",
+            //txt_id_modelo: "Filtre Modelo",
             
         }
 
@@ -47,6 +47,15 @@ $(document).ready(function() {
     $('#btn_grabar').click(function() {
         if($("#frm_nuevo").valid()){
             procesar_registro();
+        }
+        else{
+            mensaje_danger('Datos no válidos, verifique campos obligatorios.');
+        }
+    });
+
+    $('#btn_editar').click(function() {
+        if($("#frm_nuevo").valid()){
+            procesar_editar();
         }
         else{
             mensaje_danger('Datos no válidos, verifique campos obligatorios.');
@@ -178,7 +187,7 @@ $('#txt_modelo').typeahead({
         displayKey: 'name',
         source: function (query,process) {
             $.ajax({
-                url:ip+'/autocomplete/filtrarMarca',
+                url:ip+'/autocomplete/filtrarModelo',
                 type:'GET',
                 data:'query=' + query,
                 dataType:'JSON',
@@ -223,6 +232,40 @@ function procesar_registro(){
         },
         complete:function(){
             cierra_loading();
+        }
+    });
+}
+
+
+function procesar_editar()
+{
+    var frmNuevo=$("#frm_nuevo");
+    var id=$("#txt_id_registro").val();
+    var token=$("#_token").val();
+
+    $.ajax({
+        headers:{'X-CSRF-TOKEN':token},
+        type:"PUT",
+        url:ip+"/producto/"+id,
+        dataType:"JSON",
+        data:frmNuevo.serialize()+"&tipo=editar",
+        success:function(data){
+            if(data.estado=="ok"){
+                mensaje_success(data.mensaje);
+                //window.location.href=ip+"/"+"producto";
+            }
+            else{
+                mensaje_danger(data.mensaje);
+            }
+
+        },
+        beforeSend:function(){
+            abre_loading();
+            //$("#btn_editar").prop('disabled', true);
+        },
+        complete:function(){
+            cierra_loading();
+            //$("#btn_editar").prop('disabled', true);
         }
     });
 }
