@@ -11,6 +11,13 @@ class Tercero extends Model
     protected $table = "tercero";
     public $timestamps = false;
     
+    public static function consultaCodigo($codigo){
+        return static::select('*')
+        ->where('ter_codigo',$codigo)
+        ->where('ter_estado',1)
+        ->first();
+    }
+
     public static function getLista(){
         /*return static::select('*')
         ->orderBy('id','desc')

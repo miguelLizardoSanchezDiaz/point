@@ -1,4 +1,89 @@
 $(document).ready(function(){	
+    $("#frm_nuevo").validate({
+	    ignore: "input[type='text']:hidden",
+	    rules: {
+	        txt_codigo:{
+	            required:true
+	        },
+	        cbo_tipo:{
+	            required:true,
+	        },
+	        txt_direccion:{
+	            required:true
+	        },
+	        /*txt_razonsocial:{
+	            required:true
+	        },
+	        txt_nombreComercial:{
+	            required:true
+	        }*/
+	    },
+	    messages: {
+	        txt_codigo: "Ingrese código",
+	        cbo_tipo: "Debe seleccionar un tipo de documento",
+	        txt_direccion: "Debe ingresar dirección",
+	        //txt_nombreComercial:"Debe ingresar nombre comercial",
+	        //txt_direccion:"Debe ingresar dirección"
+	    }
+
+	});
+    
+    /*	$("#frm_nuevo").validate({
+	        ignore: "input[type='text']:hidden",
+	        rules: {
+	            txt_codigo:{
+	                required:true
+	            },
+	            cbo_tipo:{
+	                required:true,
+	            },
+	            txt_direccion:{
+	                required:true
+	            },
+	            txt_nombre:{
+	                required:true
+	            },
+	            txt_apellidopaterno:{
+	                required:true
+	            },
+	            txt_apellidomaterno:{
+	                required:true
+	            },
+	            txt_nacimiento:{
+	                required:true
+	            }
+	        },
+	        messages: {
+	            txt_codigo: "Ingrese código",
+	            cbo_tipo: "Debe seleccionar un tipo de documento",
+	            txt_nombre: "Debe ingresar nombre",
+	            txt_apellidopaterno: "Debe ingresar apellido paterno",
+	            txt_apellidomaterno: "Debe ingresar apellido materno",
+	            txt_nacimiento: "Debe ingresar fecha nacimiento",
+	            txt_direccion:"Debe ingresar dirección"
+	        }
+
+	    });*/
+    
+
+    $('#btn_grabar').click(function() {
+        if($("#frm_nuevo").valid()){
+            procesar_registro();
+        }
+        else{
+            mensaje_danger('Datos no válidos, verifique campos obligatorios.');
+        }
+    });
+
+    $('#btn_guardar2').click(function() {
+        if($("#frm_nuevo").valid()){
+            procesar_registro_editar();
+        }
+        else{
+            mensaje_danger('Datos no válidos, verifique campos obligatorios.');
+        }
+    });
+
     $('#persona').hide();
 
     $('.select2bs4').select2({
@@ -25,7 +110,7 @@ $('#txt_codigo').change(function(){
 });
 
 function valida_tercero(codigo){
- 	var frmNuevo=$("#frm_tercero");
+ 	var frmNuevo=$("#frm_nuevo");
     $.ajax({
         type:"POST",
         url:ip+"/tercero/valida_codigo",
@@ -56,7 +141,7 @@ function valida_tercero(codigo){
 }
 
 function consulta_numero_ruc(ruc){
-	var frmNuevo=$("#frm_tercero");
+	var frmNuevo=$("#frm_nuevo");
 	$.ajax({
 		type:"POST",
 		url:ip +'/tercero/consultar_ruc_contribuyente',
@@ -170,7 +255,7 @@ function consulta_numero_ruc(ruc){
 }
 
 function consulta_numero_dni(dni){
-	var frmNuevo=$("#frm_tercero");
+	var frmNuevo=$("#frm_nuevo");
 	$.ajax({
 		type:"POST",
 		url:ip +'/tercero/consultar_dni',
@@ -208,4 +293,55 @@ function validar_persona_empresa(){
 		$('#persona').hide();
 		$('#empresa').show();
 	}
+}
+
+function procesar_registro(){  
+    var frmNuevo=$("#frm_nuevo");
+    $.ajax({
+        type:"POST",
+        url:ip+"/tercero",
+        dataType:"JSON",
+        data:frmNuevo.serialize(),
+        success:function(data){
+            if(data.estado=="ok"){
+                mensaje_success(data.mensaje);
+                window.location.href=ip+"/"+"tercero";
+            }
+            else{
+                mensaje_danger(data.mensaje);
+            }            
+        },
+        beforeSend:function(){
+            abre_loading();
+        },
+        complete:function(){
+            cierra_loading();
+        }
+    });
+}
+
+function procesar_registro_editar(){
+    var frmNuevo=$("#frm_nuevo");
+    var id = $("#txt_id_registro").val();
+    $.ajax({
+        type:"PUT",
+        url:ip+"/tercero/"+id,
+        dataType:"JSON",
+        data:frmNuevo.serialize(),
+        success:function(data){
+            if(data.estado=="ok"){
+                mensaje_success(data.mensaje);
+                window.location.href=ip+"/"+"tercero";
+            }
+            else{
+                mensaje_danger(data.mensaje);
+            }            
+        },
+        beforeSend:function(){
+            abre_loading();
+        },
+        complete:function(){
+            cierra_loading();
+        }
+    });
 }
