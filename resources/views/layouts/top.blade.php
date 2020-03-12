@@ -10,7 +10,7 @@
       </li>
 
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="{{url('home')}}" class="nav-link">Punto de Venta</a>
+        <a href="{{url('punto')}}" class="nav-link">Punto de Venta</a>
       </li>
     </ul>
 

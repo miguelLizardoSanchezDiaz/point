@@ -189,7 +189,7 @@
 
 
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{url('punto')}}" class="nav-link">
               <i class="nav-icon fas fa-store"></i>
               <p>Punto de venta</p>
             </a>

@@ -66,5 +66,7 @@ Route::group(['middleware'=>'auth'],function()
         Route::get('/filtrarModelo','AutocompleteController@BuscarModelo');
     });
 
+    Route::resource('punto','PuntoController');
+
     
 });
