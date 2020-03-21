@@ -23,183 +23,112 @@
                 <div class="col-sm-8 col-xs-12">
                   <div class="row">
                   
-                  <a href="#" class="col-sm-2 col-xs-12 color_negro sin_decoration_a altura_producto borde_producto efecto_hover fondo_blanco">
-                  <div class="color_negro">
-                    <div class="row padding_descripcion">
-                      Detergente sapolio en botella
+                  <a href="#" class="col-sm-2 col-xs-6 color_negro sin_decoration_a margene_top_bo">
+                    <div class="color_negro borde_producto altura_producto position_contenedor efecto_hover">
+                      <div class="padding_descripcion">
+                        <b>Detergente sapolio en botella</b>
+                      </div>
+                      <div class="fondo_1 color_blanco alinear_derecha padding_descripcion position_precio size18">
+                        <b>S/ 100.00</b>
+                      </div>
                     </div>
-                    <div class="row fondo_1 color_blanco alinear_derecha">
-                      S/ 100.00
-                    </div>
-                  </div>
                   </a>
                   
-                  <a href="#" class="col-sm-2 col-xs-12 color_negro sin_decoration_a altura_producto borde_producto efecto_hover fondo_blanco">
-                  <div class="color_negro">
-                    <div class="row">
-                      Detergente sapolio x 1lt 2131 123 123
-                    </div>
-                    <div class="row">
-                      S/ 100.00
-                    </div>
-                  </div>
-                  </a>
-
-                  <a href="#" class="col-sm-2 col-xs-12 color_negro sin_decoration_a altura_producto borde_producto efecto_hover fondo_blanco">
-                    <div class="color_negro">
-                      <div class="row">
-                        Detergente sapolio
+                  <a href="#" class="col-sm-2 col-xs-6 color_negro sin_decoration_a margene_top_bo">
+                    <div class="color_negro borde_producto altura_producto position_contenedor efecto_hover">
+                      <div class="padding_descripcion">
+                        <b>Detergente sapolio en botella</b>
                       </div>
-                      <div class="row">
-                        S/ 100.00
+                      <div class="fondo_1 color_blanco alinear_derecha padding_descripcion position_precio size18">
+                        <b>S/ 100.00</b>
                       </div>
                     </div>
                   </a>
 
-                  <a href="#" class="col-sm-2 col-xs-12 color_negro sin_decoration_a altura_producto borde_producto efecto_hover fondo_blanco">
-                    <div class="color_negro">
-                      <div class="row">
-                        Detergente sapolio
+                  <a href="#" class="col-sm-2 col-xs-6 color_negro sin_decoration_a margene_top_bo">
+                    <div class="color_negro borde_producto altura_producto position_contenedor efecto_hover">
+                      <div class="padding_descripcion">
+                        <b>Detergente sapolio en botella</b>
                       </div>
-                      <div class="row">
-                        S/ 100.00
-                      </div>
-                    </div>
-                  </a>
-                  <a href="#" class="col-sm-2 col-xs-12 color_negro sin_decoration_a altura_producto borde_producto efecto_hover fondo_blanco">
-                    <div class="color_negro">
-                      <div class="row">
-                        Detergente sapolio
-                      </div>
-                      <div class="row">
-                        S/ 100.00
-                      </div>
-                    </div>
-                  </a>
-                  <a href="#" class="col-sm-2 col-xs-12 color_negro sin_decoration_a altura_producto borde_producto efecto_hover fondo_blanco">
-                    <div class="color_negro">
-                      <div class="row">
-                        Detergente sapolio
-                      </div>
-                      <div class="row">
-                        S/ 100.00
-                      </div>
-                    </div>
-                  </a>
-                  <a href="#" class="col-sm-2 col-xs-12 color_negro sin_decoration_a altura_producto borde_producto efecto_hover fondo_blanco">
-                    <div class="color_negro">
-                      <div class="row">
-                        Detergente sapolio
-                      </div>
-                      <div class="row">
-                        S/ 100.00
-                      </div>
-                    </div>
-                  </a>
-                  <a href="#" class="col-sm-2 col-xs-12 color_negro sin_decoration_a altura_producto borde_producto efecto_hover fondo_blanco">
-                    <div class="color_negro">
-                      <div class="row">
-                        Detergente sapolio
-                      </div>
-                      <div class="row">
-                        S/ 100.00
-                      </div>
-                    </div>
-                  </a>
-                  <a href="#" class="col-sm-2 col-xs-12 color_negro sin_decoration_a altura_producto borde_producto efecto_hover fondo_blanco">
-                    <div class="color_negro">
-                      <div class="row">
-                        Detergente sapolio
-                      </div>
-                      <div class="row">
-                        S/ 100.00
-                      </div>
-                    </div>
-                  </a>
-                  <a href="#" class="col-sm-2 col-xs-12 color_negro sin_decoration_a altura_producto borde_producto efecto_hover fondo_blanco">
-                    <div class="color_negro">
-                      <div class="row">
-                        Detergente sapolio
-                      </div>
-                      <div class="row">
-                        S/ 100.00
+                      <div class="fondo_1 color_blanco alinear_derecha padding_descripcion position_precio size18">
+                        <b>S/ 100.00</b>
                       </div>
                     </div>
                   </a>
 
-                  <a href="#" class="col-sm-2 col-xs-12 color_negro sin_decoration_a altura_producto borde_producto efecto_hover fondo_blanco">
-                    <div class="color_negro">
-                      <div class="row">
-                        Detergente sapolio
+                  <a href="#" class="col-sm-2 col-xs-6 color_negro sin_decoration_a margene_top_bo">
+                    <div class="color_negro borde_producto altura_producto position_contenedor efecto_hover">
+                      <div class="padding_descripcion">
+                        <b>Detergente sapolio en botella</b>
                       </div>
-                      <div class="row">
-                        S/ 100.00
-                      </div>
-                    </div>
-                  </a>
-
-                  <a href="#" class="col-sm-2 col-xs-12 color_negro sin_decoration_a altura_producto borde_producto efecto_hover fondo_blanco">
-                    <div class="color_negro">
-                      <div class="row">
-                        Detergente sapolio
-                      </div>
-                      <div class="row">
-                        S/ 100.00
+                      <div class="fondo_1 color_blanco alinear_derecha padding_descripcion position_precio size18">
+                        <b>S/ 100.00</b>
                       </div>
                     </div>
                   </a>
 
-                  <a href="#" class="col-sm-2 col-xs-12 color_negro sin_decoration_a altura_producto borde_producto efecto_hover fondo_blanco">
-                    <div class="color_negro">
-                      <div class="row">
-                        Detergente sapolio
+                  <a href="#" class="col-sm-2 col-xs-6 color_negro sin_decoration_a margene_top_bo">
+                    <div class="color_negro borde_producto altura_producto position_contenedor efecto_hover">
+                      <div class="padding_descripcion">
+                        <b>Detergente sapolio en botella</b>
                       </div>
-                      <div class="row">
-                        S/ 100.00
-                      </div>
-                    </div>
-                  </a>
-
-                  <a href="#" class="col-sm-2 col-xs-12 color_negro sin_decoration_a altura_producto borde_producto efecto_hover fondo_blanco">
-                    <div class="color_negro">
-                      <div class="row">
-                        Detergente sapolio
-                      </div>
-                      <div class="row">
-                        S/ 100.00
+                      <div class="fondo_1 color_blanco alinear_derecha padding_descripcion position_precio size18">
+                        <b>S/ 100.00</b>
                       </div>
                     </div>
                   </a>
 
-                  <a href="#" class="col-sm-2 col-xs-12 color_negro sin_decoration_a altura_producto borde_producto efecto_hover fondo_blanco">
-                    <div class="color_negro">
-                      <div class="row">
-                        Detergente sapolio
+                  <a href="#" class="col-sm-2 col-xs-6 color_negro sin_decoration_a margene_top_bo">
+                    <div class="color_negro borde_producto altura_producto position_contenedor efecto_hover">
+                      <div class="padding_descripcion">
+                        <b>Detergente sapolio en botella</b>
                       </div>
-                      <div class="row">
-                        S/ 100.00
-                      </div>
-                    </div>
-                  </a>
-
-                  <a href="#" class="col-sm-2 col-xs-12 color_negro sin_decoration_a altura_producto borde_producto efecto_hover fondo_blanco">
-                    <div class="color_negro">
-                      <div class="row">
-                        Detergente sapolio
-                      </div>
-                      <div class="row">
-                        S/ 100.00
+                      <div class="fondo_1 color_blanco alinear_derecha padding_descripcion position_precio size18">
+                        <b>S/ 100.00</b>
                       </div>
                     </div>
                   </a>
 
-                  <a href="#" class="col-sm-2 col-xs-12 color_negro sin_decoration_a altura_producto borde_producto efecto_hover fondo_blanco">
-                    <div class="color_negro">
-                      <div class="row">
-                        Detergente sapolio
+                  <a href="#" class="col-sm-2 col-xs-6 color_negro sin_decoration_a margene_top_bo">
+                    <div class="color_negro borde_producto altura_producto position_contenedor efecto_hover">
+                      <div class="padding_descripcion">
+                        <b>Detergente sapolio en botella</b>
                       </div>
-                      <div class="row">
-                        S/ 100.00
+                      <div class="fondo_1 color_blanco alinear_derecha padding_descripcion position_precio size18">
+                        <b>S/ 100.00</b>
+                      </div>
+                    </div>
+                  </a>
+
+                  <a href="#" class="col-sm-2 col-xs-6 color_negro sin_decoration_a margene_top_bo">
+                    <div class="color_negro borde_producto altura_producto position_contenedor efecto_hover">
+                      <div class="padding_descripcion">
+                        <b>Detergente sapolio en botella</b>
+                      </div>
+                      <div class="fondo_1 color_blanco alinear_derecha padding_descripcion position_precio size18">
+                        <b>S/ 100.00</b>
+                      </div>
+                    </div>
+                  </a>
+
+                  <a href="#" class="col-sm-2 col-xs-6 color_negro sin_decoration_a margene_top_bo">
+                    <div class="color_negro borde_producto altura_producto position_contenedor efecto_hover">
+                      <div class="padding_descripcion">
+                        <b>Detergente sapolio en botella</b>
+                      </div>
+                      <div class="fondo_1 color_blanco alinear_derecha padding_descripcion position_precio size18">
+                        <b>S/ 100.00</b>
+                      </div>
+                    </div>
+                  </a>
+
+                  <a href="#" class="col-sm-2 col-xs-6 color_negro sin_decoration_a margene_top_bo">
+                    <div class="color_negro borde_producto altura_producto position_contenedor efecto_hover">
+                      <div class="padding_descripcion">
+                        <b>Detergente sapolio en botella</b>
+                      </div>
+                      <div class="fondo_1 color_blanco alinear_derecha padding_descripcion position_precio size18">
+                        <b>S/ 100.00</b>
                       </div>
                     </div>
                   </a>
@@ -210,12 +139,41 @@
 
 
                 <div class="col-sm-4 col-xs-12">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                  consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                  cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                  proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                  <form action="#">
+                    <div class="">
+                      <table class="table">
+                        <tr>
+                          <td>
+                            <span class="fa fa-user"></span>
+                          </td>
+                          <td>
+                            <input type="text" class="form-control" value="MIGUEL LIZARDO SANCHEZ" readonly="readonly">
+                          </td>
+                          <td>
+                            <span class="fa fa-list"></span>
+                          </td>
+                          <td>
+                          <span class="fa fa-trash"></span>
+                          </td>
+                        </tr>
+                    </div>
+                    <div class="">
+                      <table class="table">
+                        <tr>
+                          <td>1</td>
+                          <td><input type="text" class="form-control" value="Detergente sapolio en botella"></td>
+                          <td>S/ 100.00</td>
+                        </tr>
+
+                        <tr>
+                          <td>3</td>
+                          <td><input type="text" class="form-control" value="Detergente sapolio en botella"></td>
+                          <td>S/ 100.00</td>
+                        </tr>
+                      </table>
+                      
+                    </div>
+                  </form>
                 </div>
                 </div>
               </div>
