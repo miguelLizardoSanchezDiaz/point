@@ -24,6 +24,13 @@ class Caja extends Model
         ->get();
     }
 
+    public static function getCajasActivas(){
+        return static::select('*')
+        ->where('caj_estado',1)
+        ->orderBy('caj_codigo','asc')
+        ->get();
+    }
+
     public static function anularactivar($id,$parametro)
     {
         return static::where('id',$id)
