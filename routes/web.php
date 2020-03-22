@@ -59,6 +59,12 @@ Route::group(['middleware'=>'auth'],function()
     Route::resource('marcas','MarcaController');
     Route::resource('unidad-medida','UnidadMedidaController');
     Route::resource('modelos','ModeloController');
+    Route::resource('cajas','CajaController');
+    Route::group(['prefix' => 'cajas'], function() {
+        Route::post('/{id}/anularactivar',[
+            'as' =>'anularactivar',
+            'uses'=>'CajaController@anularactivar']);
+    });
     Route::group(['prefix' => 'autocomplete'], function() {
         Route::get('/filtrarCategoria','AutocompleteController@BuscarCategoria');
         Route::get('/filtrarUnidadMedida','AutocompleteController@BuscarUmedida');

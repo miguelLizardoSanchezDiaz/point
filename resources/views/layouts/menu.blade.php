@@ -111,8 +111,6 @@
 
               </ul>
               </li>
-
-              
               
               <li class="nav-item">
                 <a href="{{url('tercero')}}" class="nav-link">
@@ -150,7 +148,33 @@
             </a>
           </li>
           
+          <li class="nav-item has-treeview">
 
+              <a href="#" class="nav-link ">
+                <i class="nav-icon fas fa-money-bill-alt"></i>
+                <p>
+                  Tesoreria
+                  <i class="right fas fa-angle-left"></i>
+                </p>
+              </a>
+
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="{{url('cajas')}}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Cajas</p>
+                  </a>
+                </li>
+
+                <li class="nav-item">
+                  <a href="{{url('operaciones-caja')}}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Operaciones Caja</p>
+                  </a>
+                </li>
+
+              </ul>
+          </li>
 
           <li class="nav-item">
             <a href="pages/calendar.html" class="nav-link">
