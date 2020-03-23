@@ -59,7 +59,7 @@
                         <td>{{$caja->caj_codigo}}</td>
                         <td>{{$caja->caj_descripcion}}</td>
                         @if($caja->caj_apertura_cierre==0)
-                        <td align="center"><a href="{{route($variable.'.create',$caja->id)}}" class="btn btn-sm btn-success"><span class="fas fa-lock-open"></span></a></td>
+                        <td align="center"><a href="{{route($variable.'.show',$caja->id)}}" class="btn btn-sm btn-success"><span class="fas fa-lock-open"></span></a></td>
                         <td align="center"></td>
                         @else
                         <td align="center"></td>
