@@ -51,7 +51,7 @@
                         <th>Descripción</th>
                         <th>Punto Venta</th>
                         <th>Editar</th>
-                        <th>Eliminar</th>
+                        <th>Activar / Desactivar</th>
                     </tr>
                   </thead>
                   <tbody>

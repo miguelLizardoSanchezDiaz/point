@@ -88,6 +88,7 @@ function procesar_registro_editar(){
         dataType:"JSON",
         data:frmNuevo.serialize(),
         success:function(data){
+            console.log(data);
             if(data.estado=="ok"){
                 mensaje_success(data.mensaje);
                 window.location.href=ip+"/"+"operaciones-caja";

@@ -61,14 +61,11 @@ Route::group(['middleware'=>'auth'],function()
     Route::resource('modelos','ModeloController');
     Route::resource('cajas','CajaController');
     Route::resource('operaciones-caja','OperacionCajaController');
-    /*Route::group(['prefix' => 'operaciones-caja'], function() {
-        Route::get('/{id}/aperturar-caja',[
-           'as' =>'aperturar_caja',
-           'uses'=>'OperacionCajaController@aperturar_caja'])->name('aperturar_caja');;
-        Route::get('/{id}/cerrar-caja',[
-            'as' =>'cerrar_caja',
-            'uses'=>'OperacionCajaController@cerrar_caja']);
-    });*/
+    Route::group(['prefix' => 'operaciones-caja'], function() {
+        Route::get('/{id}/detalles',[
+           'as' =>'detalles',
+           'uses'=>'OperacionCajaController@detalles']);
+    });
     Route::group(['prefix' => 'autocomplete'], function() {
         Route::get('/filtrarCategoria','AutocompleteController@BuscarCategoria');
         Route::get('/filtrarUnidadMedida','AutocompleteController@BuscarUmedida');

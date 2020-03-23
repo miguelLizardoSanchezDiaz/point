@@ -15,7 +15,7 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="{{url('home')}}">Inicio</a></li>
-              <li class="breadcrumb-item active">Apertura de Caja</li>
+              <li class="breadcrumb-item active">Cierre de Caja</li>
             </ol>
           </div>
         </div>
@@ -29,7 +29,7 @@
           <div class="col-md-12">
             <div class="card card-info">
               <div class="card-header">
-                <h3 class="card-title">Apertura de Caja</h3>
+                <h3 class="card-title">Cierre de Caja</h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
@@ -70,7 +70,7 @@
                             <div class="col-sm-4 col-xs-12">
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Monto Apertura (*)</label>
-                                    <input type="number" class="form-control" name="txt_montoapertura" id="txt_montoapertura" value="{{$montoSaldo}}" readonly="readonly">
+                                    <input type="number" class="form-control" name="txt_montocierre" id="txt_montocierre" value="{{$montoSaldo}}" readonly="readonly">
                                 </div>
                             </div>
                         </div>
@@ -85,7 +85,7 @@
                         <div class="form-group">
                             <label>(*) Campos Obligatorios</label>
                         </div>
-                        <button type="button" id="btn_grabar" class="btn btn-sm btn-primary m-r-5"><span class="glyphicon glyphicon-save"></span> Registrar</button>
+                        <button type="button" id="btn_guardar2" class="btn btn-sm btn-primary m-r-5"><span class="glyphicon glyphicon-save"></span> Registrar</button>
                         <a href="{{url($variable)}}" class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-remove"></span> Cancelar</a>
                         </fieldset>
                     </form>

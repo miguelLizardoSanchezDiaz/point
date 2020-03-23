@@ -12,12 +12,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Gestionar aperturas y cierres de cajas</h1>
+            <h1>Gestionar aperturas y cierres de caja</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="{{url('home')}}">Inicio</a></li>
-              <li class="breadcrumb-item active">Listado</li>
+              <li class="breadcrumb-item active">Listado Aperturas y Cierres</li>
             </ol>
           </div>
         </div>
@@ -29,9 +29,9 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-md-12">
-            <div class="card">
+            <div class="card card-info">
               <div class="card-header">
-                <h3 class="card-title">Listado de Cajas</h3>
+                <h3 class="card-title">Listado de Aperturas y Cierres</h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
@@ -47,26 +47,21 @@
                 <table class="table table-bordered">
                   <thead>                  
                     <tr>
-                        <th>Código</th>
-                        <th>Descripción</th>
-                        <th>Aperturar Caja</th>
-                        <th>Cerrar Caja</th>
-                        <th>Detalles</th>
+                        <th>Fecha de Apertura</th>
+                        <th>Monto de Apertura</th>
+                        <th>Fecha de Cierre</th>
+                        <th>Monto de Cierre</th>
+                        <th>Movimientos</th>
                     </tr>
                   </thead>
                   <tbody>
-                    @foreach($cajas as $caja)
+                    @foreach($CajaOperaciones as $CajaOperacion)
                     <tr class="">
-                        <td>{{$caja->caj_codigo}}</td>
-                        <td>{{$caja->caj_descripcion}}</td>
-                        @if($caja->caj_apertura_cierre==0)
-                        <td align="center"><a href="{{route($variable.'.show',$caja->id)}}" class="btn btn-sm btn-success"><span class="fas fa-lock-open"></span></a></td>
-                        <td align="center"><a href="" class="btn btn-sm btn-danger disabled"><span class="fas fa-lock"></span></a></td>
-                        @else
-                        <td align="center"><a href="" class="btn btn-sm btn-success disabled"><span class="fas fa-lock-open"></span></a></td>
-                        <td align="center"><a href="{{route($variable.'.edit',$caja->id)}}" class="btn btn-sm btn-danger"><span class="fas fa-lock"></span></a></td>
-                        @endif
-                        <td align="center"><a href="{{url($variable.'/'.$caja->id.'/detalles')}}" class="btn btn-sm btn-info"><span class="fas fa-list-ul"></span></a></td>
+                        <td>{{fecha_a_espanol($CajaOperacion->cao_fecha_apertura)}}</td>
+                        <td>{{$CajaOperacion->cao_monto_apertura}}</td>
+                        <td>{{fecha_a_espanol($CajaOperacion->cao_fecha_cierre)}}</td>
+                        <td>{{$CajaOperacion->cao_monto_cierre}}</td>
+                        <td align="center"><a href="{{url($variable.'/'.$CajaOperacion->id.'/detalles')}}" class="btn btn-sm btn-info"><span class="fas fa-list-ul"></span></a></td>
                     </tr>
                     @endforeach
                   </tbody>
