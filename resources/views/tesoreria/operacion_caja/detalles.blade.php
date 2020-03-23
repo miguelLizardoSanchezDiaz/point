@@ -61,7 +61,7 @@
                         <td>{{$CajaOperacion->cao_monto_apertura}}</td>
                         <td>{{fecha_a_espanol($CajaOperacion->cao_fecha_cierre)}}</td>
                         <td>{{$CajaOperacion->cao_monto_cierre}}</td>
-                        <td align="center"><a href="{{url($variable.'/'.$CajaOperacion->id.'/detalles')}}" class="btn btn-sm btn-info"><span class="fas fa-list-ul"></span></a></td>
+                        <td align="center"><a href="{{url($variable.'/'.$CajaOperacion->id.'/movimientos')}}" class="btn btn-sm btn-info"><span class="fas fa-list-ul"></span></a></td>
                     </tr>
                     @endforeach
                   </tbody>

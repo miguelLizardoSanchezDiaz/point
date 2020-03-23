@@ -65,6 +65,9 @@ Route::group(['middleware'=>'auth'],function()
         Route::get('/{id}/detalles',[
            'as' =>'detalles',
            'uses'=>'OperacionCajaController@detalles']);
+        Route::get('/{id}/movimientos',[
+           'as' =>'movimientos',
+           'uses'=>'OperacionCajaController@movimientos']);
     });
     Route::group(['prefix' => 'autocomplete'], function() {
         Route::get('/filtrarCategoria','AutocompleteController@BuscarCategoria');

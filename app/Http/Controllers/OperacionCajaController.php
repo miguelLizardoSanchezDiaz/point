@@ -134,4 +134,13 @@ class OperacionCajaController extends Controller
     	$CajaOperaciones=CajaOperacion::getCajaOperacion($id);
     	return view('tesoreria.operacion_caja.detalles',compact('CajaOperaciones','variable'));
     }
+
+    public function movimientos($id)
+    {
+        $variable=$this->variable;
+        if(valida_privilegio($this->permiso)==0){return view('layouts.no_privilegio',compact('variable'));}
+
+    	$CajaOperaciones=CajaOperacion::getCajaOperacion($id);
+    	return view('tesoreria.operacion_caja.movimientos',compact('CajaOperaciones','variable'));
+    }
 }
