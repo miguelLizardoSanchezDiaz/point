@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use App\CajaMovimiento;
 use App\CajaOperacion;
 use App\PuntoVenta;
 use App\Caja;
@@ -140,7 +141,8 @@ class OperacionCajaController extends Controller
         $variable=$this->variable;
         if(valida_privilegio($this->permiso)==0){return view('layouts.no_privilegio',compact('variable'));}
 
-    	$CajaOperaciones=CajaOperacion::getCajaOperacion($id);
-    	return view('tesoreria.operacion_caja.movimientos',compact('CajaOperaciones','variable'));
+        $montosSaldo=CajaMovimiento::obtenerSaldosCuadreCaja($id);
+    	$CajaMovimientos=CajaMovimiento::getCajaOperacionMovimiento($id);
+    	return view('tesoreria.operacion_caja.movimientos',compact('CajaMovimientos','variable','montosSaldo'));
     }
 }

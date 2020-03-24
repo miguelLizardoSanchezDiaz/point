@@ -36,9 +36,9 @@
               <!-- /.card-header -->
               <div class="card-body">
                 <div class="row">
-                    <!--<div class="col-sm-6 col-xs-12">
-                        <a href="{{route($variable.'.create')}}" class="btn btn-xs btn-success"><span class="fas fa-plus"></span> Nueva Entrada</a>
-                    </div>-->
+                    <div class="col-sm-12 col-xs-12">
+                        <a href="{{url($variable)}}" class="btn btn-sm btn-danger"><span class="fas fa-chevron-left"></span> Atras</a>
+                    </div>
                     <div class="col-sm-6 col-xs-12">
                         @include('mensajes.successful')
                     </div>

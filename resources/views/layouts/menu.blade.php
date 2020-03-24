@@ -173,6 +173,13 @@
                   </a>
                 </li>
 
+                <li class="nav-item">
+                  <a href="{{url('movimientos-caja/create')}}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Movimientos de Caja</p>
+                  </a>
+                </li>
+
               </ul>
           </li>
 

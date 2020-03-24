@@ -59,7 +59,7 @@
                     <tr class="">
                         <td>{{$caja->caj_codigo}}</td>
                         <td>{{$caja->caj_descripcion}}</td>
-                        <td>{{$caja->caj_descripcion}}</td>
+                        <td>{{$caja->puntoventa['pto_descripcion']}}</td>
                         <td align="center"><a href="{{route($variable.'.edit',$caja->id)}}" class="btn btn-sm btn-primary"><span class="fas fa-edit"></span></a></td>
                         @if($caja->caj_estado==1)
                         <td align="center"><a href="{{route($variable.'.show',$caja->id)}}" class="btn btn-sm btn-danger"><span class="fas fa-times"></span></a></td>

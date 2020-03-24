@@ -31,9 +31,21 @@ class Caja extends Model
         ->get();
     }
 
+    public static function getCajasActivasAperturadas(){
+        return static::select('*')
+        ->where('caj_estado',1)
+        ->where('caj_apertura_cierre',1)
+        ->orderBy('caj_codigo','asc')
+        ->get();
+    }
+
     public static function anularactivar($id,$parametro)
     {
         return static::where('id',$id)
             ->update(['caj_estado' => $parametro]);
+    }
+
+    public function puntoventa(){
+        return $this->belongsTo(PuntoVenta::class,'pto_id');
     }
 }

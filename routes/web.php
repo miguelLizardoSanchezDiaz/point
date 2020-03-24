@@ -69,6 +69,7 @@ Route::group(['middleware'=>'auth'],function()
            'as' =>'movimientos',
            'uses'=>'OperacionCajaController@movimientos']);
     });
+    Route::resource('movimientos-caja','MovimientoCajaController');
     Route::group(['prefix' => 'autocomplete'], function() {
         Route::get('/filtrarCategoria','AutocompleteController@BuscarCategoria');
         Route::get('/filtrarUnidadMedida','AutocompleteController@BuscarUmedida');
