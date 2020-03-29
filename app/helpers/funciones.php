@@ -82,7 +82,7 @@ function fecha_hoy_sin_guion(){
 function horaactual(){
 
     date_default_timezone_set('America/Lima');
-    $fecha=date('h:i:s');
+    $fecha=date('H:i:s');
     return $fecha;
 }
 

@@ -59,6 +59,17 @@ Route::group(['middleware'=>'auth'],function()
     Route::resource('marcas','MarcaController');
     Route::resource('unidad-medida','UnidadMedidaController');
     Route::resource('modelos','ModeloController');
+    Route::resource('cajas','CajaController');
+    Route::resource('operaciones-caja','OperacionCajaController');
+    Route::group(['prefix' => 'operaciones-caja'], function() {
+        Route::get('/{id}/detalles',[
+           'as' =>'detalles',
+           'uses'=>'OperacionCajaController@detalles']);
+        Route::get('/{id}/movimientos',[
+           'as' =>'movimientos',
+           'uses'=>'OperacionCajaController@movimientos']);
+    });
+    Route::resource('movimientos-caja','MovimientoCajaController');
     Route::group(['prefix' => 'autocomplete'], function() {
         Route::get('/filtrarCategoria','AutocompleteController@BuscarCategoria');
         Route::get('/filtrarUnidadMedida','AutocompleteController@BuscarUmedida');
