@@ -292,3 +292,9 @@ span.form-control-feedback.left.top-label{
 .size18{
   font-size: 18px;
 }
+.centrar{
+  text-align: center;
+}
+.ancho_full{
+  width:100%;
+}
