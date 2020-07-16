@@ -79,5 +79,5 @@ Route::group(['middleware'=>'auth'],function()
 
     Route::resource('punto','PuntoController');
 
-    
+    Route::resource('guia-remision','GuiaRemisionController');
 });

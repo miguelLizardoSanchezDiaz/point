@@ -120,7 +120,7 @@
               </li>
 
               <li class="nav-item">
-                <a href="./index3.html" class="nav-link">
+                <a href="#" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Almacenes</p>
                 </a>
@@ -128,17 +128,17 @@
             </ul>
           </li>
 
-          <li class="nav-item">
-            <a href="pages/calendar.html" class="nav-link">
+          {{--<li class="nav-item">
+            <a href="#" class="nav-link">
               <i class="nav-icon fas fa-boxes"></i>
               <p>
                 Almacén
                 <!--<span class="badge badge-info right">2</span>-->
               </p>
             </a>
-          </li>
+          </li>--}}
 
-          <li class="nav-item">
+          {{--<li class="nav-item">
             <a href="pages/calendar.html" class="nav-link">
               <i class="nav-icon fas fa-shopping-bag"></i>
               <p>
@@ -146,8 +146,51 @@
                 <!--<span class="badge badge-info right">2</span>-->
               </p>
             </a>
-          </li>
+          </li>--}}
           
+
+          <li class="nav-item has-treeview">
+              <a href="#" class="nav-link ">
+                <i class="nav-icon fas fa-file-invoice-dollar"></i>
+                <p>
+                  Facturación
+                  <i class="right fas fa-angle-left"></i>
+                </p>
+              </a>
+
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="#" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Facturas</p>
+                  </a>
+                </li>
+
+                <li class="nav-item">
+                  <a href="#" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Boletas de venta</p>
+                  </a>
+                </li>
+
+                <li class="nav-item">
+                  <a href="#" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Nota de crédito</p>
+                  </a>
+                </li>
+
+                <li class="nav-item">
+                  <a href="#" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Nota de Débito</p>
+                  </a>
+                </li>
+
+              </ul>
+          </li>
+
+
           <li class="nav-item has-treeview">
 
               <a href="#" class="nav-link ">
@@ -183,15 +226,34 @@
               </ul>
           </li>
 
-          <li class="nav-item">
+          <li class="nav-item has-treeview">
+
+              <a href="#" class="nav-link ">
+                <i class="nav-icon fas fa-dolly-flatbed"></i>
+                <p>
+                  Guías
+                  <i class="right fas fa-angle-left"></i>
+                </p>
+              </a>
+
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="{{url('guia-remision')}}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Guía de remisión</p>
+                  </a>
+                </li>
+              </ul>
+          </li>
+
+          {{--<li class="nav-item">
             <a href="pages/calendar.html" class="nav-link">
               <i class="nav-icon fas fa-file-invoice-dollar"></i>
               <p>
                 Documentos Electrónicos
-                <!--<span class="badge badge-info right">2</span>-->
               </p>
             </a>
-          </li>
+          </li>--}}
 
 
 
@@ -212,7 +274,7 @@
 
           <li class="nav-header">OTROS RECURSOS</li>
           <li class="nav-item">
-            <a href="https://adminlte.io/docs/3.0" class="nav-link">
+            <a href="#" class="nav-link">
               <i class="nav-icon fas fa-file"></i>
               <p>Documentación</p>
             </a>
